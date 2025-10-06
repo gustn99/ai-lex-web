@@ -6,6 +6,7 @@ import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 import unusedImports from 'eslint-plugin-unused-imports';
 import prettierPlugin from 'eslint-plugin-prettier';
+import tailwindcssPlugin from 'eslint-plugin-tailwindcss';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
@@ -20,6 +21,7 @@ export default defineConfig([
 			import: importPlugin,
 			'unused-imports': unusedImports,
 			prettier: prettierPlugin,
+			'tailwindcss': tailwindcssPlugin,
 		},
 
 		// 중첩 extends 금지 → 스프레드(...)로 풀어서 flat하게 작성
@@ -98,12 +100,14 @@ export default defineConfig([
 			'prettier/prettier': [
 				'error',
 				{
-					endOfLine: 'auto',
-					singleQuote: true,
-					semi: true,
-					printWidth: 100,
-					tabWidth: 2,
-					trailingComma: 'all',
+					"plugins": ["prettier-plugin-tailwindcss"],
+					"trailingComma": "all",
+					"tabWidth": 2,
+					"semi": true,
+					"singleQuote": true,
+					"printWidth": 120,
+					"arrowParens": "always",
+					"useTabs": true
 				},
 			],
 		},

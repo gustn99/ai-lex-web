@@ -1,0 +1,15 @@
+{
+	// 저장 시 prettier 적용
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+
+	// 저장 시 eslint 적용
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "always",
+		"source.fixAll.eslint": "always"
+	},
+	"eslint.useFlatConfig": true,
+
+	// ESLint가 TS/JS 파일을 대상으로 동작하게
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+}
