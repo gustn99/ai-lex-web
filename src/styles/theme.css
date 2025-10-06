@@ -1,0 +1,87 @@
+@theme {
+	/* Primary */
+	--color-primary-normal: #2c6fff;
+
+	/* Tag */
+	--color-tag-red: #be061e;
+	--color-tag-blue: #00498d;
+	--color-tag-green: #2e2f33;
+	--color-tag-orange: #00ae90;
+	--color-tag-purple: #a459e9;
+
+	/* Label */
+	--color-label-normal: #171719ff; /* 100% */
+	--color-label-strong: #000000ff; /* 100% */
+	--color-label-neutral: #2e2f33e0; /* 88% */
+	--color-label-alternative: #37383c9c; /* 61% */
+	--color-label-assistive: #37383c47; /* 28% */
+	--color-label-disable: #37383c29; /* 16% */
+
+	/* Background */
+	--color-background-normal-normal: #ffffff;
+	--color-background-normal-alternative: #f7f7f8;
+
+	/* Interaction */
+	--color-interaction-inactive: #989ba2;
+	--color-interaction-disable: #f4f4f5;
+
+	/* Line */
+	--color-line-normal-normal: #70737c38; /* 22% */
+	--color-line-normal-neutral: #70737c29; /* 16% */
+	--color-line-normal-alternative: #70737c14; /* 8% */
+	--color-line-normal-strong: #70737c85; /* 52% */
+	--color-line-solid-normal: #e1e2e4;
+	--color-line-solid-neutral: #eaebec;
+	--color-line-solid-alternative: #f4f4f5;
+	--color-line-solid-strong: #aeb0b6;
+
+	/* Fill */
+	--color-fill-normal: #70737c14; /* 8% */
+	--color-fill-strong: #70737c29; /* 16% */
+	--color-fill-alternative: #70737c0d; /* 5% */
+
+	/* Status */
+	--color-status-positive: #00bf40;
+	--color-status-cautionary: #ff9200;
+	--color-status-negative: #ff4242;
+
+	/* Accent/Background */
+	--color-accent-background-lime: #58cf04;
+	--color-accent-background-cyan: #00bdde;
+	--color-accent-background-light-blue: #00aeff;
+	--color-accent-background-violet: #6541f2;
+	--color-accent-background-purple: #cb59ff;
+	--color-accent-background-pink: #f553da;
+	--color-accent-background-red-orange: #ff5e00;
+
+	/* Accent/Foreground */
+	--color-accent-foreground-lime: #429e00;
+	--color-accent-foreground-green: #009632;
+	--color-accent-foreground-cyan: #0098b2;
+	--color-accent-foreground-light-blue: #008dcf;
+	--color-accent-foreground-blue: #005eeb;
+	--color-accent-foreground-violet: #5b37ed;
+	--color-accent-foreground-purple: #ad36e3;
+	--color-accent-foreground-pink: #e846cd;
+	--color-accent-foreground-red: #e52222;
+	--color-accent-foreground-red-orange: #f55a00;
+	--color-accent-foreground-orange: #d17600;
+
+	/* Cool Neutral (Cool Gray Scale) */
+	--color-cool-neutral-0: #000000;
+	--color-cool-neutral-10: #171719;
+	--color-cool-neutral-20: #292a2d;
+	--color-cool-neutral-30: #46474c;
+	--color-cool-neutral-40: #5a5c63;
+	--color-cool-neutral-50: #70737c;
+	--color-cool-neutral-60: #878a93;
+	--color-cool-neutral-70: #989ba2;
+	--color-cool-neutral-80: #aeb0b6;
+	--color-cool-neutral-90: #c2c4c8;
+	--color-cool-neutral-95: #dbdcdf;
+	--color-cool-neutral-96: #e1e2e4;
+	--color-cool-neutral-97: #eaebec;
+	--color-cool-neutral-98: #f4f4f5;
+	--color-cool-neutral-99: #f7f7f8;
+	--color-cool-neutral-100: #ffffff;
+}

@@ -1,0 +1,83 @@
+@theme {
+	/* Font Family */
+	--font-pretendard: 'Pretendard';
+
+	/* Display */
+	--text-display-01: 56px;
+	--text-display-01--line-height: 72px; /* 72px (1.286) */
+	--text-display-01--letter-spacing: -0.0319em;
+
+	--text-display-02: 40px;
+	--text-display-02--line-height: 52px; /* 52px (1.3) */
+	--text-display-02--letter-spacing: -0.0282em;
+
+	/* Title */
+	--text-title-01: 36px; /* Title 1 */
+	--text-title-01--line-height: 48px; /* 48px (1.334) */
+	--text-title-01--letter-spacing: -0.027em;
+
+	--text-title-02: 28px; /* Title 2 */
+	--text-title-02--line-height: 38px; /* 38px (1.358) */
+	--text-title-02--letter-spacing: -0.0236em;
+
+	--text-title-03: 24px; /* Title 3 */
+	--text-title-03--line-height: 32px; /* 32px (1.334) */
+	--text-title-03--letter-spacing: -0.023em;
+
+	/* Heading */
+	--text-heading-01: 22px; /* Heading 1 */
+	--text-heading-01--line-height: 30px; /* 30px (1.364) */
+	--text-heading-01--letter-spacing: -0.0194em;
+
+	--text-heading-02: 20px; /* Heading 2 */
+	--text-heading-02--line-height: 28px; /* 28px (1.4) */
+	--text-heading-02--letter-spacing: -0.012em;
+
+	/* Headline */
+	--text-headline-01: 18px; /* Headline 1 */
+	--text-headline-01--line-height: 26px; /* 26px (1.445) */
+	--text-headline-01--letter-spacing: -0.002em;
+
+	--text-headline-02: 17px; /* Headline 2 */
+	--text-headline-02--line-height: 24px; /* 24px (1.412) */
+	--text-headline-02--letter-spacing: 0em;
+
+	/* Body */
+	--text-body-01-normal: 16px; /* Body 1/Normal */
+	--text-body-01-normal--line-height: 24px; /* 24px (1.5) */
+	--text-body-01-normal--letter-spacing: 0.0057em;
+
+	--text-body-01-reading: 16px; /* Body 1/Reading */
+	--text-body-01-reading--line-height: 26px; /* 26px (1.625) */
+	--text-body-01-reading--letter-spacing: 0.0057em;
+
+	--text-body-02-normal: 15px; /* Body 2/Normal */
+	--text-body-02-normal--line-height: 22px; /* 22px (1.467) */
+	--text-body-02-normal--letter-spacing: 0.0096em;
+
+	--text-body-02-reading: 15px; /* Body 2/Reading */
+	--text-body-02-reading--line-height: 24px; /* 24px (1.6) */
+	--text-body-02-reading--letter-spacing: 0.0096em;
+
+	/* Label */
+	--text-label-01-normal: 14px; /* Label 1/Normal */
+	--text-label-01-normal--line-height: 20px; /* 20px (1.429) */
+	--text-label-01-normal--letter-spacing: 0.0145em;
+
+	--text-label-01-reading: 14px; /* Label 1/Reading */
+	--text-label-01-reading--line-height: 22px; /* 22px (1.571) */
+	--text-label-01-reading--letter-spacing: 0.0145em;
+
+	--text-label-02: 13px; /* Label 2 */
+	--text-label-02--line-height: 18px; /* 18px (1.385) */
+	--text-label-02--letter-spacing: 0.0194em;
+
+	/* Caption */
+	--text-caption-01: 12px; /* Caption 1 */
+	--text-caption-01--line-height: 16px; /* 16px (1.334) */
+	--text-caption-01--letter-spacing: 0.0252em;
+
+	--text-caption-02: 11px; /* Caption 2 */
+	--text-caption-02--line-height: 14px; /* 14px (1.273) */
+	--text-caption-02--letter-spacing: 0.0311em;
+}
