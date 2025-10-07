@@ -1,41 +1,47 @@
 import Button from '@/components/common/Button';
+import Icon from '@/assets/favicon.svg?react';
 
 export default function Home() {
 	return (
-		<div className="text-accent-background-cyan text-2xl font-bold">
-			Home
-			<Button appearance="solid" leadingIcon="/favicon.svg" trailingIcon="/favicon.svg" iconOnly loading />
-			<Button appearance="solid" loading>
+		<div className="space-y-4">
+			<div className="flex flex-col">
 				solid
-			</Button>
-			<Button appearance="solid" variant="secondary" disabled>
-				solid secondary
-			</Button>
-			<Button appearance="solid" variant="secondary" loading>
-				solid secondary
-			</Button>
-			<Button appearance="solid" variant="assistive" disabled>
-				solid assistive
-			</Button>
-			<Button appearance="solid" fullWidth>
-				solid fullwidth
-			</Button>
-			<Button appearance="outlined">outlined</Button>
-			<Button appearance="outlined" variant="secondary">
-				outlined secondary
-			</Button>
-			<Button appearance="outlined" variant="assistive">
-				outlined assistive
-			</Button>
-			<Button appearance="outlined" variant="assistive" loading>
-				outlined assistive
-			</Button>
-			<Button appearance="outlined" size="small" leadingIcon="/favicon.svg" trailingIcon="/favicon.svg">
-				outlined fullwidth
-			</Button>
-			<Button appearance="outlined" size="small" loading>
-				outlined fullwidth
-			</Button>
+				<Button appearance="solid" size="small" LeadingIcon={Icon} iconOnly />
+				<Button appearance="solid" LeadingIcon={Icon}>
+					solid
+				</Button>
+				<Button appearance="solid" variant="secondary">
+					solid secondary
+				</Button>
+				<Button appearance="solid" variant="secondary" loading>
+					solid secondary
+				</Button>
+				<Button appearance="solid" variant="assistive">
+					solid assistive
+				</Button>
+				<Button appearance="solid" fullWidth>
+					solid fullwidth
+				</Button>
+			</div>
+
+			<div className="flex flex-col">
+				outlined
+				<Button appearance="outlined" TrailingIcon={Icon}>
+					outlined
+				</Button>
+				<Button appearance="outlined" variant="secondary">
+					outlined secondary
+				</Button>
+				<Button appearance="outlined" variant="assistive">
+					outlined assistive
+				</Button>
+				<Button appearance="outlined" variant="assistive" disabled>
+					outlined assistive
+				</Button>
+				<Button appearance="outlined" fullWidth>
+					outlined fullwidth
+				</Button>
+			</div>
 		</div>
 	);
 }

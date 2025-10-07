@@ -5,8 +5,8 @@ export interface ButtonProps {
 	appearance: 'solid' | 'outlined';
 	variant?: 'primary' | 'secondary' | 'assistive';
 	size?: 'small' | 'medium' | 'large';
-	leadingIcon?: string;
-	trailingIcon?: string;
+	LeadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+	TrailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	iconOnly?: boolean;
 	disabled?: boolean;
 	loading?: boolean;
@@ -20,8 +20,8 @@ export default function Button({
 	appearance,
 	variant = 'primary',
 	size = 'large',
-	leadingIcon,
-	trailingIcon,
+	LeadingIcon,
+	TrailingIcon,
 	iconOnly = false,
 	disabled = false,
 	loading = false,
@@ -65,17 +65,17 @@ export default function Button({
 		<button
 			disabled={disabled}
 			className={clsx(
-				'relative overflow-hidden rounded-lg disabled:opacity-40',
-				fullWidth && 'w-full',
+				'relative h-fit overflow-hidden rounded-lg disabled:opacity-40',
+				fullWidth ? 'w-full' : 'w-fit',
 				buttonStyle[appearance][variant],
 				interaction['base'],
 				interaction[appearance],
 			)}
 		>
 			<div className={clsx('flex items-center justify-center', loading && 'invisible', buttonSize[size])}>
-				{leadingIcon && <img src={leadingIcon} alt="" className={iconSize[size]} />}
+				{LeadingIcon && <LeadingIcon className={iconSize[size]} />}
 				{children}
-				{trailingIcon && !iconOnly && <img src={trailingIcon} alt="" className={iconSize[size]} />}
+				{TrailingIcon && !iconOnly && <TrailingIcon className={iconSize[size]} />}
 			</div>
 			{loading && (
 				<div className={clsx('absolute top-1/2 left-1/2 -translate-1/2', iconSize[size])}>
