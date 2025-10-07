@@ -38,6 +38,15 @@ export default function Home() {
 				<Button appearance="outlined" variant="assistive" disabled>
 					outlined assistive
 				</Button>
+				<Button
+					appearance="outlined"
+					variant="assistive"
+					contentColor="text-primary-normal"
+					backgroundColor="bg-fill-normal"
+					disabled
+				>
+					outlined custom
+				</Button>
 				<Button appearance="outlined" fullWidth>
 					outlined fullwidth
 				</Button>

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import LoadingIcon from './LoadingIcon';
+import { twMerge } from 'tailwind-merge';
 
 export interface ButtonProps {
 	appearance: 'solid' | 'outlined';
@@ -64,12 +65,16 @@ export default function Button({
 	return (
 		<button
 			disabled={disabled}
-			className={clsx(
-				'relative h-fit overflow-hidden rounded-lg disabled:opacity-40',
-				fullWidth ? 'w-full' : 'w-fit',
-				buttonStyle[appearance][variant],
-				interaction['base'],
-				interaction[appearance],
+			className={twMerge(
+				clsx(
+					'relative h-fit overflow-hidden rounded-lg disabled:opacity-40',
+					fullWidth ? 'w-full' : 'w-fit',
+					buttonStyle[appearance][variant],
+					interaction['base'],
+					interaction[appearance],
+					contentColor,
+					backgroundColor,
+				),
 			)}
 		>
 			<div className={clsx('flex items-center justify-center', loading && 'invisible', buttonSize[size])}>
