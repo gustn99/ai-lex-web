@@ -13,7 +13,7 @@ export interface ButtonProps {
 	fullWidth?: boolean;
 	contentColor?: string;
 	backgroundColor?: string;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export default function Button({
@@ -75,7 +75,7 @@ export default function Button({
 			<div className={clsx('flex items-center justify-center', loading && 'invisible', buttonSize[size])}>
 				{leadingIcon && <img src={leadingIcon} alt="" className={iconSize[size]} />}
 				{children}
-				{trailingIcon && <img src={trailingIcon} alt="" className={iconSize[size]} />}
+				{trailingIcon && !iconOnly && <img src={trailingIcon} alt="" className={iconSize[size]} />}
 			</div>
 			{loading && (
 				<div className={clsx('absolute top-1/2 left-1/2 -translate-1/2', iconSize[size])}>

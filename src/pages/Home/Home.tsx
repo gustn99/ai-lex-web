@@ -4,7 +4,7 @@ export default function Home() {
 	return (
 		<div className="text-accent-background-cyan text-2xl font-bold">
 			Home
-			<Button appearance="solid">solid</Button>
+			<Button appearance="solid" leadingIcon="/favicon.svg" trailingIcon="/favicon.svg" iconOnly loading />
 			<Button appearance="solid" loading>
 				solid
 			</Button>
@@ -30,7 +30,7 @@ export default function Home() {
 			<Button appearance="outlined" variant="assistive" loading>
 				outlined assistive
 			</Button>
-			<Button appearance="outlined" size="small">
+			<Button appearance="outlined" size="small" leadingIcon="/favicon.svg" trailingIcon="/favicon.svg">
 				outlined fullwidth
 			</Button>
 			<Button appearance="outlined" size="small" loading>
