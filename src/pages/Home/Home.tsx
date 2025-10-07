@@ -1,3 +1,31 @@
+import Button from '@/components/common/Button';
+
 export default function Home() {
-	return <div className="text-accent-background-cyan bg-amber-50 text-2xl font-bold underline">Home</div>;
+	return (
+		<div className="text-accent-background-cyan text-2xl font-bold">
+			Home
+			<Button appearance="solid" disabled>
+				solid
+			</Button>
+			<Button appearance="solid" variant="secondary" disabled>
+				solid secondary
+			</Button>
+			<Button appearance="solid" variant="assistive" disabled>
+				solid assistive
+			</Button>
+			<Button appearance="solid" fullWidth>
+				solid fullwidth
+			</Button>
+			<Button appearance="outlined">outlined</Button>
+			<Button appearance="outlined" variant="secondary">
+				outlined secondary
+			</Button>
+			<Button appearance="outlined" variant="assistive">
+				outlined assistive
+			</Button>
+			<Button appearance="outlined" fullWidth>
+				outlined fullwidth
+			</Button>
+		</div>
+	);
 }
