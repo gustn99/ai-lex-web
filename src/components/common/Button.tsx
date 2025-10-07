@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import LoadingIcon from './LoadingIcon';
 
 export interface ButtonProps {
 	appearance: 'solid' | 'outlined';
@@ -64,17 +65,23 @@ export default function Button({
 		<button
 			disabled={disabled}
 			className={clsx(
-				'relative flex items-center justify-center overflow-hidden rounded-lg disabled:opacity-40',
+				'relative overflow-hidden rounded-lg disabled:opacity-40',
 				fullWidth && 'w-full',
 				buttonStyle[appearance][variant],
-				buttonSize[size],
 				interaction['base'],
 				interaction[appearance],
 			)}
 		>
-			{leadingIcon && <img src={leadingIcon} alt="" className={iconSize[size]} />}
-			{children}
-			{trailingIcon && <img src={trailingIcon} alt="" className={iconSize[size]} />}
+			<div className={clsx('flex items-center justify-center', loading && 'invisible', buttonSize[size])}>
+				{leadingIcon && <img src={leadingIcon} alt="" className={iconSize[size]} />}
+				{children}
+				{trailingIcon && <img src={trailingIcon} alt="" className={iconSize[size]} />}
+			</div>
+			{loading && (
+				<div className={clsx('absolute top-1/2 left-1/2 -translate-1/2', iconSize[size])}>
+					<LoadingIcon />
+				</div>
+			)}
 		</button>
 	);
 }

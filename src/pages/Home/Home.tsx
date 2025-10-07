@@ -4,10 +4,14 @@ export default function Home() {
 	return (
 		<div className="text-accent-background-cyan text-2xl font-bold">
 			Home
-			<Button appearance="solid" disabled>
+			<Button appearance="solid">solid</Button>
+			<Button appearance="solid" loading>
 				solid
 			</Button>
 			<Button appearance="solid" variant="secondary" disabled>
+				solid secondary
+			</Button>
+			<Button appearance="solid" variant="secondary" loading>
 				solid secondary
 			</Button>
 			<Button appearance="solid" variant="assistive" disabled>
@@ -23,7 +27,13 @@ export default function Home() {
 			<Button appearance="outlined" variant="assistive">
 				outlined assistive
 			</Button>
-			<Button appearance="outlined" fullWidth>
+			<Button appearance="outlined" variant="assistive" loading>
+				outlined assistive
+			</Button>
+			<Button appearance="outlined" size="small">
+				outlined fullwidth
+			</Button>
+			<Button appearance="outlined" size="small" loading>
 				outlined fullwidth
 			</Button>
 		</div>
