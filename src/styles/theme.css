@@ -1,4 +1,8 @@
 @theme {
+	/* reset */
+	--color-*: initial;
+	--color-white: #ffffff;
+
 	/* Primary */
 	--color-primary-normal: #2c6fff;
 	--color-primary-neutral: #1f88ff;
