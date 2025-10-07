@@ -44,8 +44,9 @@ export default function Home() {
 					contentColor="text-primary-normal"
 					backgroundColor="bg-fill-normal"
 					disabled
+					className="w-35"
 				>
-					outlined custom
+					custom
 				</Button>
 				<Button appearance="outlined" fullWidth>
 					outlined fullwidth

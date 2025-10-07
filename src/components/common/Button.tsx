@@ -12,8 +12,9 @@ export interface ButtonProps {
 	disabled?: boolean;
 	loading?: boolean;
 	fullWidth?: boolean;
-	contentColor?: string;
-	backgroundColor?: string;
+	contentColor?: string; // utility class
+	backgroundColor?: string; // utility class
+	className?: string;
 	children?: React.ReactNode;
 }
 
@@ -30,6 +31,7 @@ export default function Button({
 	contentColor,
 	backgroundColor,
 	children,
+	className,
 }: ButtonProps) {
 	const buttonStyle = {
 		solid: {
@@ -74,6 +76,7 @@ export default function Button({
 					interaction[appearance],
 					contentColor,
 					backgroundColor,
+					className,
 				),
 			)}
 		>
