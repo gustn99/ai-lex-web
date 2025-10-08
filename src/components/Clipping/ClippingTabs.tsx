@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TabList from '../common/TabBar';
+import TabList from '../common/TabList';
 import TabPanel from '../common/TabPanel';
 
 const tabs = [
