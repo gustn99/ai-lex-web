@@ -14,6 +14,8 @@ export interface ButtonProps {
 	fullWidth?: boolean;
 	contentColor?: string; // utility class
 	backgroundColor?: string; // utility class
+	borderColor?: string; // utility class
+	typography?: string; // utility class
 	className?: string;
 	children?: React.ReactNode;
 }
@@ -30,6 +32,8 @@ export default function Button({
 	fullWidth = false,
 	contentColor,
 	backgroundColor,
+	borderColor,
+	typography,
 	children,
 	className,
 }: ButtonProps) {
@@ -76,6 +80,8 @@ export default function Button({
 					interaction[appearance],
 					contentColor,
 					backgroundColor,
+					borderColor,
+					typography,
 					className,
 				),
 			)}
