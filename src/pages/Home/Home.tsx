@@ -1,4 +1,4 @@
-import ClippingTabs from '@/components/clipping-temp/ClippingTabs';
+import ClippingTabs from '@/components/Clipping/ClippingTabs';
 
 export default function Home() {
 	return (
