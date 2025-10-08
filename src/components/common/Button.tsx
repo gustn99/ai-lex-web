@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import LoadingIcon from './LoadingIcon';
 import { twMerge } from 'tailwind-merge';
+
+import LoadingIcon from './LoadingIcon';
 
 export interface ButtonProps {
 	appearance: 'solid' | 'outlined';
@@ -67,7 +68,6 @@ export default function Button({
 		solid: `before:bg-label-normal ${variant === 'primary' ? 'active:before:opacity-18 focus:before:opacity-12 hover:before:opacity-7.5' : 'active:before:opacity-12 focus:before:opacity-8 hover:before:opacity-5'}`,
 		outlined: `${variant === 'primary' ? 'before:bg-primary-normal' : 'before:bg-label-normal'} active:before:opacity-12 focus:before:opacity-8 hover:before:opacity-5`,
 	};
-
 	return (
 		<button
 			disabled={disabled}

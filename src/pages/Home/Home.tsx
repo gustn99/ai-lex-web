@@ -1,5 +1,6 @@
-import Button from '@/components/common/Button';
 import Icon from '@/assets/favicon.svg?react';
+
+import Button from '@/components/common/Button';
 
 export default function Home() {
 	return (
