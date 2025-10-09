@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import ChipList, { Chip } from '../common/ChipList';
 
-const chips: (Chip & { type: 'document' | 'party' })[] = [
+const chips: (Chip & { type: 'all' | 'document' | 'party' })[] = [
 	{
-		type: 'document',
+		type: 'all',
 		label: 'all',
 		value: '전체',
 	},
@@ -39,11 +39,21 @@ const chips: (Chip & { type: 'document' | 'party' })[] = [
 export default function FileFilter() {
 	const documentChips = chips.filter((c) => c.type === 'document');
 	const partyChips = chips.filter((c) => c.type === 'party');
+	const nonPartyChips = [chips[0], ...documentChips];
 
 	const [activeChips, setActiveChips] = useState(['all']);
 
+	const validateSelectAll = (chips: Chip[]) => {
+		return chips.every((c) => activeChips.includes(c.label));
+	};
+
 	const handleSelect = (chip: string) => {
 		if (chip === 'all') {
+			setActiveChips(['all']);
+		} else if (
+			validateSelectAll(documentChips.filter((c) => c.label !== chip)) ||
+			validateSelectAll(partyChips.filter((c) => c.label !== chip))
+		) {
 			setActiveChips(['all']);
 		} else {
 			const filteredChips = activeChips.filter((c) => c !== 'all');
@@ -66,7 +76,7 @@ export default function FileFilter() {
 	return (
 		<div className="p-4">
 			<div className="flex items-center gap-1.5">
-				<ChipList chips={documentChips} activeChips={activeChips} onSelect={handleSelect} onDeselect={handleDeselect} />
+				<ChipList chips={nonPartyChips} activeChips={activeChips} onSelect={handleSelect} onDeselect={handleDeselect} />
 				<div className="bg-line-normal-normal h-4 w-px" />
 				<ChipList chips={partyChips} activeChips={activeChips} onSelect={handleSelect} onDeselect={handleDeselect} />
 			</div>
