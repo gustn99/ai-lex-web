@@ -9,10 +9,10 @@ export interface ButtonProps {
 	size?: 'small' | 'medium' | 'large';
 	LeadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	TrailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-	iconOnly?: boolean;
 	disabled?: boolean;
-	loading?: boolean;
-	fullWidth?: boolean;
+	isIconOnly?: boolean;
+	isLoading?: boolean;
+	isFullWidth?: boolean;
 	contentColor?: string; // utility class
 	backgroundColor?: string; // utility class
 	borderColor?: string; // utility class
@@ -27,10 +27,10 @@ export default function Button({
 	size = 'large',
 	LeadingIcon,
 	TrailingIcon,
-	iconOnly = false,
+	isIconOnly = false,
 	disabled = false,
-	loading = false,
-	fullWidth = false,
+	isLoading = false,
+	isFullWidth = false,
 	contentColor,
 	backgroundColor,
 	borderColor,
@@ -52,15 +52,15 @@ export default function Button({
 	};
 
 	const buttonSize = {
-		small: `text-label-02 gap-1 ${iconOnly ? 'p-2' : 'px-4 py-2'}`,
-		medium: `text-body-02-normal gap-[5px] ${iconOnly ? 'p-2.5' : 'px-5 py-2.5'}`,
-		large: `text-body-01-normal gap-1.5 ${iconOnly ? 'p-3' : 'px-7 py-3'}`,
+		small: `text-label-02 gap-1 ${isIconOnly ? 'p-2' : 'px-4 py-2'}`,
+		medium: `text-body-02-normal gap-[5px] ${isIconOnly ? 'p-2.5' : 'px-5 py-2.5'}`,
+		large: `text-body-01-normal gap-1.5 ${isIconOnly ? 'p-3' : 'px-7 py-3'}`,
 	};
 
 	const iconSize = {
-		small: iconOnly ? 'w-[18px] h-[18px]' : 'w-4 h-4',
-		medium: iconOnly ? 'w-5 h-5' : 'w-[18px] h-[18px]',
-		large: iconOnly ? 'w-6 h-6' : 'w-5 h-5',
+		small: isIconOnly ? 'w-[18px] h-[18px]' : 'w-4 h-4',
+		medium: isIconOnly ? 'w-5 h-5' : 'w-[18px] h-[18px]',
+		large: isIconOnly ? 'w-6 h-6' : 'w-5 h-5',
 	};
 
 	const interaction = {
@@ -74,7 +74,7 @@ export default function Button({
 			className={twMerge(
 				clsx(
 					'relative h-fit overflow-hidden rounded-lg disabled:opacity-40',
-					fullWidth ? 'w-full' : 'w-fit',
+					isFullWidth ? 'w-full' : 'w-fit',
 					buttonStyle[appearance][variant],
 					interaction['base'],
 					interaction[appearance],
@@ -86,12 +86,12 @@ export default function Button({
 				),
 			)}
 		>
-			<div className={clsx('flex items-center justify-center', loading && 'invisible', buttonSize[size])}>
+			<div className={clsx('flex items-center justify-center', isLoading && 'invisible', buttonSize[size])}>
 				{LeadingIcon && <LeadingIcon className={iconSize[size]} />}
 				{children}
-				{TrailingIcon && !iconOnly && <TrailingIcon className={iconSize[size]} />}
+				{TrailingIcon && !isIconOnly && <TrailingIcon className={iconSize[size]} />}
 			</div>
-			{loading && (
+			{isLoading && (
 				<div className={clsx('absolute top-1/2 left-1/2 -translate-1/2', iconSize[size])}>
 					<LoadingIcon />
 				</div>
