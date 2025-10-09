@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Chip as ChipType } from './ChipList';
 import { useEffect, useRef, useState } from 'react';
-import ChipInput from './\bChipInput';
+import ChipInput from './ChipInput';
 import ChipButton from './ChipButton';
 
 // TODO: 주석 원복
