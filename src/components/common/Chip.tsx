@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Chip as ChipType } from './ChipList';
 import { useEffect, useRef, useState } from 'react';
 import ChipInput from './\bChipInput';
+import ChipButton from './ChipButton';
 
 // TODO: 주석 원복
 // import ChipIcon from '@/assets/chip/deselect.svg?react'
@@ -15,16 +16,10 @@ export interface ChipProps {
 	onDeselect: (e: React.MouseEvent, chip: string) => void;
 }
 
-export default function Chip({ chip, isActive, isAll, isEditable = false, onSelect, onDeselect }: ChipProps) {
+export default function Chip(props: ChipProps) {
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
-
-	const handleContextMenu = (e: React.MouseEvent) => {
-		// if (!isEditable || isAll) return;
-		e.preventDefault();
-		setIsMenuOpen(true);
-	};
 
 	const closeMenu = () => setIsMenuOpen(false);
 
@@ -41,36 +36,12 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 		};
 	}, []);
 
-	const { label, value, backgroundColor } = chip;
-
 	return (
 		<div className="relative">
 			{isEditing ? (
-				<ChipInput value={value} setIsEditing={setIsEditing} />
+				<ChipInput value={props.chip.value} setIsEditing={setIsEditing} />
 			) : (
-				<button
-					className={clsx(
-						'flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
-						isActive
-							? `bg-label-strong ${backgroundColor} text-inverse-label`
-							: 'border-line-normal-neutral text-label-alternative',
-					)}
-					onClick={() => onSelect(label)}
-					onContextMenu={handleContextMenu}
-				>
-					{value}
-
-					{!isAll && isActive && (
-						<div
-							role="button"
-							tabIndex={0}
-							onClick={(e) => onDeselect(e, label)}
-							className="bg-accent-background-cyan h-4 w-4"
-						>
-							{/* <ChipIcon /> */}
-						</div>
-					)}
-				</button>
+				<ChipButton {...props} setIsMenuOpen={setIsMenuOpen} />
 			)}
 
 			{isMenuOpen && (
