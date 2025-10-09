@@ -43,42 +43,12 @@ export default function FileFilter() {
 
 	const [activeChips, setActiveChips] = useState(['all']);
 
-	const validateSelectAll = (chips: Chip[]) => {
-		return chips.every((c) => activeChips.includes(c.label));
-	};
-
-	const handleSelect = (chip: string) => {
-		if (chip === 'all') {
-			setActiveChips(['all']);
-		} else if (
-			validateSelectAll(documentChips.filter((c) => c.label !== chip)) ||
-			validateSelectAll(partyChips.filter((c) => c.label !== chip))
-		) {
-			setActiveChips(['all']);
-		} else {
-			const filteredChips = activeChips.filter((c) => c !== 'all');
-			filteredChips.push(chip);
-			setActiveChips(filteredChips);
-		}
-	};
-
-	const handleDeselect = (e: React.MouseEvent, chip: string) => {
-		e.stopPropagation();
-		if (chip === 'all') return;
-
-		const filteredChips = activeChips.filter((c) => c !== chip);
-		if (filteredChips.length === 0) {
-			filteredChips.push('all');
-		}
-		setActiveChips(filteredChips);
-	};
-
 	return (
 		<div className="p-4">
 			<div className="flex items-center gap-1.5">
-				<ChipList chips={nonPartyChips} activeChips={activeChips} onSelect={handleSelect} onDeselect={handleDeselect} />
+				<ChipList chips={nonPartyChips} activeChips={activeChips} setActiveChips={setActiveChips} />
 				<div className="bg-line-normal-normal h-4 w-px" />
-				<ChipList chips={partyChips} activeChips={activeChips} onSelect={handleSelect} onDeselect={handleDeselect} />
+				<ChipList chips={partyChips} activeChips={activeChips} setActiveChips={setActiveChips} />
 			</div>
 		</div>
 	);
