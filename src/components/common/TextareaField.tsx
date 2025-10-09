@@ -40,7 +40,7 @@ export default function TextareaField({
 
 			<div
 				className={`border-line-normal-neutral focus-within:outline-primary-normal/43 box-border flex flex-col justify-between gap-3 rounded-lg border py-3 pr-1.5 pl-4 focus-within:outline-[2px] focus-within:outline-offset-[-2px] ${
-					disabled ? 'bg-interaction-disable text-label-alternative' : 'bg-white'
+					disabled ? 'bg-interaction-disable' : 'bg-white'
 				}`}
 			>
 				<textarea
@@ -52,7 +52,7 @@ export default function TextareaField({
 					disabled={disabled}
 					maxLength={maxLength}
 					rows={1}
-					className="textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive max-h-[78px] w-full resize-none overflow-y-auto bg-transparent pr-[7px] outline-none"
+					className="textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive disabled:text-label-alternative max-h-[78px] w-full resize-none overflow-y-auto bg-transparent pr-[7px] outline-none"
 				/>
 
 				<span className="text-label-02 text-label-assistive flex h-6 items-center font-medium">

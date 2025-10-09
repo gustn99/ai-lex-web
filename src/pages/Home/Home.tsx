@@ -52,6 +52,15 @@ export default function Home() {
 
 			<TextareaField
 				label="설명"
+				value={text}
+				onChange={(e) => setText(e.target.value)}
+				maxLength={180}
+				description="180자 이내로 입력해 주세요."
+				disabled
+			/>
+
+			<TextareaField
+				label="설명"
 				value="값이 있음"
 				onChange={(e) => setText(e.target.value)}
 				maxLength={100}
