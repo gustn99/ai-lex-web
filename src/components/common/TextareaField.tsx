@@ -52,7 +52,7 @@ export default function TextareaField({
 					disabled={disabled}
 					maxLength={maxLength}
 					rows={1}
-					className={`textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive max-h-[78px] w-full resize-none overflow-y-auto border-none bg-transparent pr-[7px] outline-none`}
+					className="textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive max-h-[78px] w-full resize-none overflow-y-auto bg-transparent pr-[7px] outline-none"
 				/>
 
 				<span className="text-label-02 text-label-assistive flex h-6 items-center font-medium">
