@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Chip as ChipType } from './ChipList';
 import { useEffect, useRef, useState } from 'react';
+import ChipInput from './\bChipInput';
 
 // TODO: 주석 원복
 // import ChipIcon from '@/assets/chip/deselect.svg?react'
@@ -18,7 +19,6 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
-	const [content, setContent] = useState(chip.value);
 
 	const handleContextMenu = (e: React.MouseEvent) => {
 		// if (!isEditable || isAll) return;
@@ -41,23 +41,12 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 		};
 	}, []);
 
-	const { label, backgroundColor } = chip;
+	const { label, value, backgroundColor } = chip;
 
 	return (
 		<div className="relative">
 			{isEditing ? (
-				<input
-					type="text"
-					value={content}
-					onChange={(e) => setContent(e.target.value)}
-					onBlur={() => setIsEditing(false)} // 포커스 잃으면 종료
-					onKeyDown={(e) => {
-						if (e.key === 'Enter') setIsEditing(false); // 엔터 누르면 종료
-						if (e.key === 'Escape') setIsEditing(false);
-					}}
-					autoFocus
-					className="text-label-alternative border-line-normal-neutral w-42 rounded-lg border px-2.5 py-1.5 outline-[#0077ff80] focus:outline-2 focus:-outline-offset-5"
-				/>
+				<ChipInput value={value} setIsEditing={setIsEditing} />
 			) : (
 				<button
 					className={clsx(
@@ -69,7 +58,7 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 					onClick={() => onSelect(label)}
 					onContextMenu={handleContextMenu}
 				>
-					{content}
+					{value}
 
 					{!isAll && isActive && (
 						<div
