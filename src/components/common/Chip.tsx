@@ -15,8 +15,10 @@ export interface ChipProps {
 }
 
 export default function Chip({ chip, isActive, isAll, isEditable = false, onSelect, onDeselect }: ChipProps) {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement | null>(null);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isEditing, setIsEditing] = useState(false);
+	const [content, setContent] = useState(chip.value);
 
 	const handleContextMenu = (e: React.MouseEvent) => {
 		// if (!isEditable || isAll) return;
@@ -39,33 +41,48 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 		};
 	}, []);
 
-	const { label, value, backgroundColor } = chip;
+	const { label, backgroundColor } = chip;
 
 	return (
 		<div className="relative">
-			<button
-				className={clsx(
-					'relative flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
-					isActive
-						? `bg-label-strong ${backgroundColor} text-inverse-label`
-						: 'border-line-normal-neutral text-label-alternative',
-				)}
-				onClick={() => onSelect(label)}
-				onContextMenu={handleContextMenu}
-			>
-				{value}
+			{isEditing ? (
+				<input
+					type="text"
+					value={content}
+					onChange={(e) => setContent(e.target.value)}
+					onBlur={() => setIsEditing(false)} // 포커스 잃으면 종료
+					onKeyDown={(e) => {
+						if (e.key === 'Enter') setIsEditing(false); // 엔터 누르면 종료
+						if (e.key === 'Escape') setIsEditing(false);
+					}}
+					autoFocus
+					className="rounded border px-3 py-1 focus:outline-none"
+				/>
+			) : (
+				<button
+					className={clsx(
+						'relative flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
+						isActive
+							? `bg-label-strong ${backgroundColor} text-inverse-label`
+							: 'border-line-normal-neutral text-label-alternative',
+					)}
+					onClick={() => onSelect(label)}
+					onContextMenu={handleContextMenu}
+				>
+					{content}
 
-				{!isAll && isActive && (
-					<div
-						role="button"
-						tabIndex={0}
-						onClick={(e) => onDeselect(e, label)}
-						className="bg-accent-background-cyan h-4 w-4"
-					>
-						{/* <ChipIcon /> */}
-					</div>
-				)}
-			</button>
+					{!isAll && isActive && (
+						<div
+							role="button"
+							tabIndex={0}
+							onClick={(e) => onDeselect(e, label)}
+							className="bg-accent-background-cyan h-4 w-4"
+						>
+							{/* <ChipIcon /> */}
+						</div>
+					)}
+				</button>
+			)}
 
 			{isMenuOpen && (
 				<div
@@ -73,10 +90,19 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 					className="text-body-01-normal border-line-solid-neutral absolute top-8 my-2 flex w-40 flex-col gap-1 rounded-lg border bg-white px-3 py-2 font-normal whitespace-nowrap shadow-md"
 				>
 					{[
-						{ label: 'edit', value: '폴더 이름 변경', contentColor: 'text-label-normal' },
+						{
+							label: 'edit',
+							value: '폴더 이름 변경',
+							contentColor: 'text-label-normal',
+							onClick: () => {
+								closeMenu();
+								setIsEditing(true);
+							},
+						},
 						{ label: 'delete', value: '폴더 삭제', contentColor: 'text-status-negative' },
-					].map(({ label, value, contentColor }) => (
+					].map(({ label, value, contentColor, onClick }) => (
 						<button
+							onClick={onClick}
 							key={label}
 							className={clsx('border-line-normal-alternative flex gap-2 py-2 not-last:border-b', contentColor)}
 						>
