@@ -1,8 +1,10 @@
 import InputField from '@/components/common/InputField';
+import TextareaField from '@/components/common/TextareaField';
 import { useState } from 'react';
 
 export default function Home() {
 	const [value, setValue] = useState('');
+	const [text, setText] = useState('');
 
 	return (
 		<div className="space-y-4">
@@ -12,7 +14,7 @@ export default function Home() {
 				value={value}
 				placeholder="하이"
 				description="메시지에 마침표를 찍어요."
-				isRequired
+				required
 				onChange={(e) => setValue(e.target.value)}
 				onClear={() => setValue('')}
 			/>
@@ -37,6 +39,15 @@ export default function Home() {
 				disabled
 				onChange={(e) => setValue(e.target.value)}
 				onClear={() => setValue('')}
+			/>
+
+			<TextareaField
+				label="설명"
+				value={text}
+				onChange={(e) => setText(e.target.value)}
+				maxLength={100}
+				description="100자 이내로 입력해 주세요."
+				required
 			/>
 		</div>
 	);

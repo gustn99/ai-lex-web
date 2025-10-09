@@ -6,7 +6,7 @@ interface InputFieldProps {
 	value: string;
 	placeholder?: string;
 	description?: string;
-	isRequired?: boolean;
+	required?: boolean;
 	disabled?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	onClear?: () => void;
@@ -17,7 +17,7 @@ export default function InputField({
 	value,
 	placeholder = '텍스트를 입력해 주세요.',
 	description,
-	isRequired = false,
+	required = false,
 	disabled,
 	onChange,
 	onClear,
@@ -36,7 +36,7 @@ export default function InputField({
 		<div className="flex w-[335px] flex-col gap-2">
 			<label className="text-label-01-normal text-label-neutral flex items-center font-semibold">
 				{label}
-				{isRequired && <span className="text-status-negative ml-1">*</span>}
+				{required && <span className="text-status-negative ml-1">*</span>}
 			</label>
 
 			<div className="relative">
@@ -46,9 +46,9 @@ export default function InputField({
 					placeholder={placeholder}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
-					required={isRequired}
+					required={required}
 					disabled={disabled}
-					className="border-line-normal-neutral text-body-01-normal placeholder:text-label-assistive text-label-normal disabled:bg-interaction-disable disabled:text-label-alternative h-12 w-full rounded-lg border px-4 py-3 pr-10 focus:border-2 focus:border-[#9EBBF9] focus:outline-none"
+					className="border-line-normal-neutral text-body-01-normal placeholder:text-label-assistive text-label-normal disabled:bg-interaction-disable disabled:text-label-alternative h-12 w-full rounded-lg border px-4 py-3 pr-12 focus:border-2 focus:border-[#9EBBF9] focus:outline-none"
 				/>
 
 				{showClear && (
