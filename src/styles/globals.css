@@ -17,17 +17,20 @@
 }
 
 @layer utilities {
-	.custom-scrollbar::-webkit-scrollbar {
+	/* textarea 전용 스크롤바 스타일 */
+	.textarea-scrollbar::-webkit-scrollbar {
 		width: 3px;
 	}
 
-	.custom-scrollbar::-webkit-scrollbar-thumb {
+	.textarea-scrollbar::-webkit-scrollbar-thumb {
 		background-color: #dddddf;
 		border-radius: 9999px;
 	}
 
-	.custom-scrollbar::-webkit-scrollbar-track {
+	.textarea-scrollbar::-webkit-scrollbar-track {
 		background-color: #ffffff;
 		border-radius: 9999px;
+		margin-top: -5px;
+		margin-bottom: -40px;
 	}
 }

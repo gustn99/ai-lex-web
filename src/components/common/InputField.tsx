@@ -18,7 +18,7 @@ export default function InputField({
 	placeholder = '텍스트를 입력해 주세요.',
 	description,
 	required = false,
-	disabled,
+	disabled = false,
 	onChange,
 	onClear,
 }: InputFieldProps) {
@@ -48,7 +48,7 @@ export default function InputField({
 					onBlur={() => setIsFocused(false)}
 					required={required}
 					disabled={disabled}
-					className="border-line-normal-neutral text-body-01-normal placeholder:text-label-assistive text-label-normal disabled:bg-interaction-disable disabled:text-label-alternative h-12 w-full rounded-lg border px-4 py-3 pr-12 focus:border-2 focus:border-[#9EBBF9] focus:outline-none"
+					className="border-line-normal-neutral text-body-01-normal placeholder:text-label-assistive text-label-normal disabled:bg-interaction-disable disabled:text-label-alternative focus-within:outline-primary-normal/43 h-12 w-full rounded-lg border px-4 py-3 pr-12 focus-within:outline-[2px] focus-within:outline-offset-[-2px]"
 				/>
 
 				{showClear && (

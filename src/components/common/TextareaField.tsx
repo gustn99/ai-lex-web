@@ -17,7 +17,7 @@ export default function TextareaField({
 	placeholder = '텍스트를 입력해 주세요.',
 	description,
 	required = false,
-	disabled,
+	disabled = false,
 	maxLength = 100,
 	onChange,
 }: TextareaFieldProps) {
@@ -39,11 +39,10 @@ export default function TextareaField({
 			</label>
 
 			<div
-				className={`border-line-normal-neutral box-border flex flex-col justify-between gap-3 rounded-lg border py-3 pr-[3px] pl-4 focus-within:outline-[2px] focus-within:outline-offset-[-2px] focus-within:outline-[#9EBBF9] ${
+				className={`border-line-normal-neutral focus-within:outline-primary-normal/43 box-border flex flex-col justify-between gap-3 rounded-lg border py-3 pr-1.5 pl-4 focus-within:outline-[2px] focus-within:outline-offset-[-2px] ${
 					disabled ? 'bg-interaction-disable text-label-alternative' : 'bg-white'
 				}`}
 			>
-				{/* 실제 입력 영역 */}
 				<textarea
 					ref={textareaRef}
 					value={value}
@@ -53,7 +52,7 @@ export default function TextareaField({
 					disabled={disabled}
 					maxLength={maxLength}
 					rows={1}
-					className={`custom-scrollbar text-body-01-normal placeholder:text-label-assistive max-h-[78px] w-full resize-none overflow-y-auto border-none bg-transparent p-0 outline-none`}
+					className={`textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive max-h-[78px] w-full resize-none overflow-y-auto border-none bg-transparent pr-[7px] outline-none`}
 				/>
 
 				<span className="text-label-02 text-label-assistive flex h-6 items-center font-medium">

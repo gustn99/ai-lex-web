@@ -7,7 +7,7 @@ export default function Home() {
 	const [text, setText] = useState('');
 
 	return (
-		<div className="space-y-4">
+		<div className="flex flex-wrap gap-10 p-10">
 			{/* 필수 항목 */}
 			<InputField
 				label="제목"
@@ -48,6 +48,15 @@ export default function Home() {
 				maxLength={100}
 				description="100자 이내로 입력해 주세요."
 				required
+			/>
+
+			<TextareaField
+				label="설명"
+				value="값이 있음"
+				onChange={(e) => setText(e.target.value)}
+				maxLength={100}
+				description="100자 이내로 입력해 주세요."
+				disabled
 			/>
 		</div>
 	);
