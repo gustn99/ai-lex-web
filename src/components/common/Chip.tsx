@@ -56,12 +56,12 @@ export default function Chip({ chip, isActive, isAll, isEditable = false, onSele
 						if (e.key === 'Escape') setIsEditing(false);
 					}}
 					autoFocus
-					className="rounded border px-3 py-1 focus:outline-none"
+					className="text-label-alternative border-line-normal-neutral w-42 rounded-lg border px-2.5 py-1.5 outline-[#0077ff80] focus:outline-2 focus:-outline-offset-5"
 				/>
 			) : (
 				<button
 					className={clsx(
-						'relative flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
+						'flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
 						isActive
 							? `bg-label-strong ${backgroundColor} text-inverse-label`
 							: 'border-line-normal-neutral text-label-alternative',
