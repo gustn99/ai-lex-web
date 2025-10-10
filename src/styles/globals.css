@@ -14,4 +14,8 @@
 	body {
 		@apply font-pretendard;
 	}
+
+	button {
+		@apply cursor-pointer disabled:pointer-events-none;
+	}
 }
