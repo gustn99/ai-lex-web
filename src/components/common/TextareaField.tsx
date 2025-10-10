@@ -34,7 +34,7 @@ export default function TextareaField({
 	}, [value]);
 
 	return (
-		<div className="flex w-[335px] flex-col gap-2">
+		<div className="flex w-full flex-col gap-2">
 			{label && (
 				<label htmlFor={textareaId} className="text-label-01-normal text-label-neutral flex items-center font-semibold">
 					{label}

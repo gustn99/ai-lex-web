@@ -9,15 +9,17 @@ export default function Home() {
 	return (
 		<div className="flex flex-wrap gap-10 p-10">
 			{/* 필수 항목 */}
-			<InputField
-				label="제목"
-				value={value}
-				placeholder="하이"
-				description="메시지에 마침표를 찍어요."
-				required
-				onChange={(e) => setValue(e.target.value)}
-				onClear={() => setValue('')}
-			/>
+			<div className="w-[335px]">
+				<InputField
+					label="제목"
+					value={value}
+					placeholder="하이"
+					description="메시지에 마침표를 찍어요."
+					required
+					onChange={(e) => setValue(e.target.value)}
+					onClear={() => setValue('')}
+				/>
+			</div>
 
 			{/* disabled + placeholder */}
 			<InputField
@@ -41,14 +43,16 @@ export default function Home() {
 				onClear={() => setValue('')}
 			/>
 
-			<TextareaField
-				label="설명"
-				value={text}
-				onChange={(e) => setText(e.target.value)}
-				maxLength={100}
-				description="100자 이내로 입력해 주세요."
-				required
-			/>
+			<div className="w-[335px]">
+				<TextareaField
+					label="설명"
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+					maxLength={100}
+					description="100자 이내로 입력해 주세요."
+					required
+				/>
+			</div>
 
 			<TextareaField
 				label="설명"
