@@ -2,6 +2,7 @@
 	/* reset */
 	--color-*: initial;
 	--color-white: #ffffff;
+	--color-black: #000000;
 
 	/* Primary */
 	--color-primary-normal: #2c6fff;
