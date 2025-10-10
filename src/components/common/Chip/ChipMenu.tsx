@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import clsx from 'clsx';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 export interface ChipMenuProps {
 	setIsMenuOpen: (state: boolean) => void;
@@ -9,21 +11,9 @@ export interface ChipMenuProps {
 
 export default function ChipMenu({ setIsMenuOpen, setIsEditing }: ChipMenuProps) {
 	const menuRef = useRef<HTMLDivElement | null>(null);
-
 	const closeMenu = () => setIsMenuOpen(false);
 
-	useEffect(() => {
-		const handleOutsideClick = (e: MouseEvent) => {
-			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-				closeMenu();
-			}
-		};
-
-		document.addEventListener('mousedown', handleOutsideClick);
-		return () => {
-			document.removeEventListener('mousedown', handleOutsideClick);
-		};
-	}, []);
+	useOutsideClick({ ref: menuRef, onClick: closeMenu, eventType: 'mousedown' });
 
 	const menus = [
 		{
