@@ -1,58 +1,76 @@
-import Icon from '@/assets/favicon.svg?react';
-
-import Button from '@/components/common/Button';
+import InputField from '@/components/common/InputField';
+import TextareaField from '@/components/common/TextareaField';
+import { useState } from 'react';
 
 export default function Home() {
+	const [value, setValue] = useState('');
+	const [text, setText] = useState('');
+
 	return (
-		<div className="space-y-4">
-			<div className="flex flex-col">
-				solid
-				<Button appearance="solid" size="small" LeadingIcon={Icon} iconOnly />
-				<Button appearance="solid" LeadingIcon={Icon}>
-					solid
-				</Button>
-				<Button appearance="solid" variant="secondary">
-					solid secondary
-				</Button>
-				<Button appearance="solid" variant="secondary" loading>
-					solid secondary
-				</Button>
-				<Button appearance="solid" variant="assistive">
-					solid assistive
-				</Button>
-				<Button appearance="solid" fullWidth>
-					solid fullwidth
-				</Button>
+		<div className="flex flex-wrap gap-10 p-10">
+			{/* 필수 항목 */}
+			<div className="w-[335px]">
+				<InputField
+					label="제목"
+					value={value}
+					placeholder="하이"
+					description="메시지에 마침표를 찍어요."
+					required
+					onChange={(e) => setValue(e.target.value)}
+					onClear={() => setValue('')}
+				/>
 			</div>
 
-			<div className="flex flex-col">
-				outlined
-				<Button appearance="outlined" TrailingIcon={Icon}>
-					outlined
-				</Button>
-				<Button appearance="outlined" variant="secondary">
-					outlined secondary
-				</Button>
-				<Button appearance="outlined" variant="assistive">
-					outlined assistive
-				</Button>
-				<Button appearance="outlined" variant="assistive" disabled>
-					outlined assistive
-				</Button>
-				<Button
-					appearance="outlined"
-					variant="assistive"
-					contentColor="text-primary-normal"
-					backgroundColor="bg-fill-normal"
-					disabled
-					className="w-35"
-				>
-					custom
-				</Button>
-				<Button appearance="outlined" fullWidth>
-					outlined fullwidth
-				</Button>
+			{/* disabled + placeholder */}
+			<InputField
+				label="제목"
+				value={value}
+				placeholder="하이"
+				description="메시지에 마침표를 찍어요."
+				disabled
+				onChange={(e) => setValue(e.target.value)}
+				onClear={() => setValue('')}
+			/>
+
+			{/* disabled + 값이 있음 */}
+			<InputField
+				label="제목"
+				value="값이 있다"
+				placeholder="하이"
+				description="메시지에 마침표를 찍어요."
+				disabled
+				onChange={(e) => setValue(e.target.value)}
+				onClear={() => setValue('')}
+			/>
+
+			<div className="w-[335px]">
+				<TextareaField
+					label="설명"
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+					maxLength={100}
+					description="100자 이내로 입력해 주세요."
+					required
+				/>
 			</div>
+
+			<TextareaField
+				label="설명"
+				value={text}
+				onChange={(e) => setText(e.target.value)}
+				maxLength={180}
+				description="180자 이내로 입력해 주세요."
+				disabled
+			/>
+
+			<TextareaField
+				label="설명"
+				value="값이 있음"
+				onChange={(e) => setText(e.target.value)}
+				maxLength={100}
+				description="100자 이내로 입력해 주세요."
+				disabled
+			/>
 		</div>
 	);
 }
