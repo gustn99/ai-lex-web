@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-import ChipIcon from '@/assets/chip/deselect.svg?react';
+import ChipIcon from '@/assets/svgs/chip/deselect.svg?react';
 
 import { Chip } from './ChipList';
 
