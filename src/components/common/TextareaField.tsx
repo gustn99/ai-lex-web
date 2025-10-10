@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 
 interface TextareaFieldProps {
-	label: string;
 	value: string;
+	label?: string;
 	placeholder?: string;
 	description?: string;
 	required?: boolean;
@@ -22,6 +22,8 @@ export default function TextareaField({
 	onChange,
 }: TextareaFieldProps) {
 	const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+	const reactId = useId();
+	const textareaId = label ? `textarea-${label.replace(/\s+/g, '-').toLowerCase()}-${reactId}` : `textarea-${reactId}`;
 
 	useEffect(() => {
 		const textarea = textareaRef.current;
@@ -33,10 +35,12 @@ export default function TextareaField({
 
 	return (
 		<div className="flex w-[335px] flex-col gap-2">
-			<label className="text-label-01-normal text-label-neutral flex items-center font-semibold">
-				{label}
-				{required && <span className="text-status-negative ml-1">*</span>}
-			</label>
+			{label && (
+				<label htmlFor={textareaId} className="text-label-01-normal text-label-neutral flex items-center font-semibold">
+					{label}
+					{required && <span className="text-status-negative ml-1">*</span>}
+				</label>
+			)}
 
 			<div
 				className={`border-line-normal-neutral focus-within:outline-primary-normal/43 box-border flex flex-col justify-between gap-3 rounded-lg border py-3 pr-1.5 pl-4 focus-within:outline-[2px] focus-within:outline-offset-[-2px] ${
@@ -44,6 +48,7 @@ export default function TextareaField({
 				}`}
 			>
 				<textarea
+					id={textareaId}
 					ref={textareaRef}
 					value={value}
 					onChange={onChange}

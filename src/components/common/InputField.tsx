@@ -1,9 +1,9 @@
 import CloseIcon from '@/assets/svgs/common/close-circle-gray.svg';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 interface InputFieldProps {
-	label: string;
 	value: string;
+	label?: string;
 	placeholder?: string;
 	description?: string;
 	required?: boolean;
@@ -24,6 +24,9 @@ export default function InputField({
 }: InputFieldProps) {
 	const [isFocused, setIsFocused] = useState(false);
 
+	const reactId = useId();
+	const inputId = label ? `input-${label.replace(/\s+/g, '-').toLowerCase()}-${reactId}` : `input-${reactId}`;
+
 	const showClear = !!value && !disabled && isFocused;
 	const handleClear = () => {
 		if (onClear) onClear();
@@ -34,13 +37,16 @@ export default function InputField({
 
 	return (
 		<div className="flex w-[335px] flex-col gap-2">
-			<label className="text-label-01-normal text-label-neutral flex items-center font-semibold">
-				{label}
-				{required && <span className="text-status-negative ml-1">*</span>}
-			</label>
+			{label && (
+				<label htmlFor={inputId} className="text-label-01-normal text-label-neutral flex items-center font-semibold">
+					{label}
+					{required && <span className="text-status-negative ml-1">*</span>}
+				</label>
+			)}
 
 			<div className="relative">
 				<input
+					id={inputId}
 					value={value}
 					onChange={onChange}
 					placeholder={placeholder}
@@ -52,11 +58,7 @@ export default function InputField({
 				/>
 
 				{showClear && (
-					<button
-						type="button"
-						onMouseDown={handleClear}
-						className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer p-[1px]"
-					>
+					<button type="button" onMouseDown={handleClear} className="absolute top-1/2 right-3 -translate-y-1/2 p-[1px]">
 						<img src={CloseIcon} alt="입력 내용 지우기" />
 					</button>
 				)}
