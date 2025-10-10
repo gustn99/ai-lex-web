@@ -1,5 +1,6 @@
-import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
+
+import clsx from 'clsx';
 
 export interface ChipMenuProps {
 	setIsMenuOpen: (state: boolean) => void;

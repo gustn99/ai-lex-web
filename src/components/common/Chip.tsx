@@ -1,7 +1,8 @@
-import { Chip as ChipType } from './ChipList';
 import { useState } from 'react';
-import ChipInput from './ChipInput';
+
 import ChipButton from './ChipButton';
+import ChipInput from './ChipInput';
+import { Chip as ChipType } from './ChipList';
 import ChipMenu from './ChipMenu';
 
 export interface ChipProps {
