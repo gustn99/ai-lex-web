@@ -8,12 +8,21 @@ export interface ChipButtonProps {
 	chip: Chip;
 	isActive: boolean;
 	isAll: boolean;
+	isEditable?: boolean;
 	onSelect: (chip: string) => void;
 	onDeselect: (e: React.MouseEvent, chip: string) => void;
 	setIsMenuOpen: (state: boolean) => void;
 }
 
-export default function ChipButton({ chip, isActive, isAll, onSelect, onDeselect, setIsMenuOpen }: ChipButtonProps) {
+export default function ChipButton({
+	chip,
+	isActive,
+	isAll,
+	isEditable = false,
+	onSelect,
+	onDeselect,
+	setIsMenuOpen,
+}: ChipButtonProps) {
 	const handleContextMenu = (e: React.MouseEvent) => {
 		// if (!isEditable || isAll) return;
 		e.preventDefault();
