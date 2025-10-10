@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import ChipList, { Chip } from '../common/ChipList';
+import ChipList, { Chip } from '../common/Chip/ChipList';
 
 const chips: (Chip & { type: 'all' | 'document' | 'party' })[] = [
 	{
