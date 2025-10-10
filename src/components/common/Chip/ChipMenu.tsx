@@ -2,6 +2,9 @@ import { useRef } from 'react';
 
 import clsx from 'clsx';
 
+import DeleteIcon from '@/assets/svgs/chip/delete.svg?react';
+import EditIcon from '@/assets/svgs/chip/edit.svg?react';
+
 import useOutsideClick from '@/hooks/useOutsideClick';
 
 export interface ChipMenuProps {
@@ -20,7 +23,7 @@ export default function ChipMenu({ setIsMenuOpen, setIsEditing }: ChipMenuProps)
 			label: 'edit',
 			value: '폴더 이름 변경',
 			contentColor: 'text-label-normal',
-			// icon: EditIcon,
+			icon: EditIcon,
 			onClick: () => {
 				closeMenu();
 				setIsEditing(true);
@@ -29,7 +32,7 @@ export default function ChipMenu({ setIsMenuOpen, setIsEditing }: ChipMenuProps)
 		{
 			label: 'delete',
 			value: '폴더 삭제',
-			// icon: DeleteIcon,
+			icon: DeleteIcon,
 			contentColor: 'text-status-negative',
 			onClick: () => closeMenu(),
 		},
@@ -43,13 +46,13 @@ export default function ChipMenu({ setIsMenuOpen, setIsEditing }: ChipMenuProps)
 			}}
 			className="text-body-01-normal border-line-solid-neutral absolute top-8 my-2 flex w-40 flex-col gap-1 rounded-lg border bg-white px-3 py-2 font-normal whitespace-nowrap shadow-md"
 		>
-			{menus.map(({ label, value, contentColor, onClick }) => (
+			{menus.map(({ label, value, icon: Icon, contentColor, onClick }) => (
 				<button
 					onClick={onClick}
 					key={label}
 					className={clsx('border-line-normal-alternative flex gap-2 py-2 not-last:border-b', contentColor)}
 				>
-					<div className="bg-accent-background-cyan h-6 w-6" />
+					<Icon />
 					{value}
 				</button>
 			))}
