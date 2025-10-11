@@ -26,18 +26,25 @@ export default function FileUploader() {
 	const handleDrop = (e: DragEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		setIsDragging(false);
-		const droppedFiles = e.dataTransfer.files;
-
-		if (droppedFiles && validateFileType(droppedFiles)) setFiles([...files, ...droppedFiles]);
+		uploadFile(e.dataTransfer.files);
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const selectedFiles = e.target.files;
-		if (selectedFiles && validateFileType(selectedFiles)) setFiles([...files, ...selectedFiles]);
+		const fs = e.target.files;
+		if (fs) uploadFile(fs);
 	};
 
-	const validateFileType = (files: FileList) => {
-		const isValid = [...files].every((f) => f.type === 'application/pdf');
+	const uploadFile = (fs: FileList) => {
+		if (fs && validateFileType(fs)) {
+			const filteredFiles = [...fs].filter(
+				(f) => !files.some((existing) => existing.name === f.name && existing.size === f.size),
+			);
+			setFiles([...files, ...filteredFiles]);
+		}
+	};
+
+	const validateFileType = (fs: FileList) => {
+		const isValid = [...fs].every((f) => f.type === 'application/pdf');
 		if (!isValid) alert('pdf 파일만 업로드할 수 있습니다.');
 
 		return isValid;
@@ -52,13 +59,13 @@ export default function FileUploader() {
 
 			<button
 				className={clsx(
-					'bg-fill-alternative flex w-full flex-col items-center gap-1 rounded-lg py-6',
-					isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400',
+					'flex w-full flex-col items-center gap-1 rounded-lg py-6',
+					isDragging ? 'bg-primary-neutral/20' : 'bg-fill-alternative',
 				)}
 				onDragOver={handleDragOver}
 				onDragLeave={handleDragLeave}
 				onDrop={handleDrop}
-				onClick={() => document.getElementById('file-input')?.click()}
+				onClick={() => document.getElementById(inputId)?.click()}
 			>
 				<div className="bg-accent-background-cyan h-6 w-6"></div>
 				{/* <UploadIcon /> */}
