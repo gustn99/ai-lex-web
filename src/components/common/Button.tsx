@@ -19,6 +19,7 @@ export interface ButtonProps {
 	typography?: string; // utility class
 	className?: string;
 	children?: React.ReactNode;
+	onClick: () => void;
 }
 
 export default function Button({
@@ -37,10 +38,11 @@ export default function Button({
 	typography,
 	children,
 	className,
+	onClick,
 }: ButtonProps) {
 	const buttonStyle = {
 		solid: {
-			primary: 'bg-primary-normal hover:bg-primary-neutral text-white font-semibold',
+			primary: 'bg-primary-normal text-white font-semibold',
 			secondary: 'bg-cool-neutral-20 text-white font-semibold',
 			assistive: 'bg-fill-normal text-label-neutral font-medium',
 		},
@@ -70,6 +72,7 @@ export default function Button({
 	};
 	return (
 		<button
+			onClick={onClick}
 			disabled={disabled}
 			className={twMerge(
 				clsx(
