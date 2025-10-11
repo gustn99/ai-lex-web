@@ -12,10 +12,18 @@ import FileList from './FileList';
 
 // import UploadIcon from '@/assets/svgs/common/upload.svg';
 
-export default function FileUploader({ singleOnly = false }: { singleOnly?: boolean }) {
+type FileUploadType = 'document' | 'evidence';
+
+interface FileUploaderProps {
+	type: FileUploadType;
+	singleOnly?: boolean;
+}
+
+export default function FileUploader({ type, singleOnly = false }: FileUploaderProps) {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isDragging, setIsDragging] = useState(false);
 	const isLoading = false;
+	const isDocument = type === 'document';
 
 	const inputId = UseInputId('file-upload');
 
@@ -64,7 +72,7 @@ export default function FileUploader({ singleOnly = false }: { singleOnly?: bool
 	};
 
 	return (
-		<div className="flex flex-col gap-2 px-2">
+		<div className={clsx('flex flex-col px-2', isDocument ? 'gap-3' : 'gap-2')}>
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>
