@@ -1,12 +1,10 @@
-'use client';
-
 import { useState } from 'react';
 import ChatHeader from '@/components/ChatBot/ChatHeader';
 import ChatSidebar from '@/components/ChatBot/ChatSidebar';
 import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
 import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
 
-const title = '매매대금 청구';
+const title = '매매대금 청구'; // TODO 연결
 const caseNo = '2025가단12345';
 
 export default function ChatBot() {
