@@ -12,10 +12,10 @@ import FileList from './FileList';
 
 // import UploadIcon from '@/assets/svgs/common/upload.svg';
 
-export default function FileUploader() {
+export default function FileUploader({ singleOnly = false }: { singleOnly?: boolean }) {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isDragging, setIsDragging] = useState(false);
-	const isLoading = true;
+	const isLoading = false;
 
 	const inputId = UseInputId('file-upload');
 
@@ -40,6 +40,11 @@ export default function FileUploader() {
 	};
 
 	const uploadFile = (fs: FileList) => {
+		if (singleOnly && (files.length === 1 || fs.length > 1)) {
+			alert('파일은 하나만 업로드할 수 있습니다.');
+			return;
+		}
+
 		if (fs && validateFileType(fs)) {
 			const filteredFiles = [...fs].filter(
 				(f) => !files.some((existing) => existing.name === f.name && existing.size === f.size),
@@ -88,6 +93,7 @@ export default function FileUploader() {
 			</button>
 
 			<FileList files={files} setFiles={setFiles} />
+			{singleOnly && <p className="text-caption-01 text-label-alternative">하나의 파일만 업로드 해주세요.</p>}
 		</div>
 	);
 }
