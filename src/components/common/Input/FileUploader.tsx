@@ -6,6 +6,8 @@ import clsx from 'clsx';
 
 import UseInputId from '@/hooks/useInputId';
 
+import LoadingIcon from '../LoadingIcon';
+
 import FileList from './FileList';
 
 // import UploadIcon from '@/assets/svgs/common/upload.svg';
@@ -13,6 +15,7 @@ import FileList from './FileList';
 export default function FileUploader() {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isDragging, setIsDragging] = useState(false);
+	const isLoading = true;
 
 	const inputId = UseInputId('file-upload');
 
@@ -61,7 +64,7 @@ export default function FileUploader() {
 
 			<button
 				className={clsx(
-					'flex w-full flex-col items-center gap-1 rounded-lg py-6',
+					'text-body-01-normal flex w-full flex-col items-center gap-1 rounded-lg py-6',
 					isDragging ? 'bg-primary-neutral/20' : 'bg-fill-alternative',
 				)}
 				onDragOver={handleDragOver}
@@ -69,9 +72,19 @@ export default function FileUploader() {
 				onDrop={handleDrop}
 				onClick={() => document.getElementById(inputId)?.click()}
 			>
-				<div className="bg-accent-background-cyan h-6 w-6"></div>
-				{/* <UploadIcon /> */}
-				<p className="text-body-01-normal font-regular">클릭 혹은 드래그하여 Pdf 파일 업로드</p>
+				{isLoading ? (
+					<>
+						<div className="h-6 w-6">
+							<LoadingIcon className="stroke-line-solid-normal" />
+						</div>
+						<p className="text-label-neutral font-medium">파일 업로드 중.. (10/100)</p>
+					</>
+				) : (
+					<>
+						{/* <UploadIcon /> */}
+						<p>클릭 혹은 드래그하여 Pdf 파일 업로드</p>
+					</>
+				)}
 			</button>
 
 			<FileList files={files} setFiles={setFiles} />
