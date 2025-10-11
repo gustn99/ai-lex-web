@@ -50,8 +50,12 @@ export default function FileUploader() {
 		return isValid;
 	};
 
+	const handleFileDeleteClick = (fileName: string) => {
+		setFiles(files.filter((f) => f.name !== fileName));
+	};
+
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex flex-col gap-2 px-2">
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>
@@ -71,6 +75,22 @@ export default function FileUploader() {
 				{/* <UploadIcon /> */}
 				<p className="text-body-01-normal font-regular">클릭 혹은 드래그하여 Pdf 파일 업로드</p>
 			</button>
+
+			<ul
+				hidden={files.length === 0}
+				className="border-line-normal-neutral file-uploader-scrollbar flex max-h-64 w-full flex-col gap-2 overflow-y-scroll rounded-lg border p-2 pr-0"
+			>
+				{files.map((f) => (
+					<li key={f.name} className="text-label-02 grid grid-cols-[auto_1fr_auto] items-center gap-1 px-1">
+						<div className="bg-accent-background-cyan h-[18px] w-[18px]"></div>
+						<div className="w-full truncate">{f.name}</div>
+						<button
+							onClick={() => handleFileDeleteClick(f.name)}
+							className="bg-accent-background-cyan h-[18px] w-[18px]"
+						></button>
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
