@@ -1,5 +1,6 @@
-import CloseIcon from '@/assets/svgs/common/close-circle-gray.svg';
 import { useId, useState } from 'react';
+
+import CloseIcon from '@/assets/svgs/common/close-circle-gray.svg';
 
 interface InputFieldProps {
 	value: string;
@@ -59,7 +60,7 @@ export default function InputField({
 
 				{showClear && (
 					<button type="button" onMouseDown={handleClear} className="absolute top-1/2 right-3 -translate-y-1/2 p-[1px]">
-						<img src={CloseIcon} alt="입력 내용 지우기" />
+						<CloseIcon />
 					</button>
 				)}
 			</div>

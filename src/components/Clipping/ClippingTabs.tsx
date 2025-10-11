@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import TabList from '../common/TabList';
-import TabPanel from '../common/TabPanel';
+import { TabList, TabPanel } from '../common/Tab';
 
 const tabs = [
 	{ label: 'files', value: '사건 기록' },
