@@ -4,13 +4,13 @@ import { useState, DragEvent, ChangeEvent } from 'react';
 
 import clsx from 'clsx';
 
+import UploadIcon from '@/assets/svgs/common/upload.svg?react';
+
 import UseInputId from '@/hooks/useInputId';
 
 import LoadingIcon from '../LoadingIcon';
 
 import FileList from './FileList';
-
-// import UploadIcon from '@/assets/svgs/common/upload.svg';
 
 type FileUploadType = 'document' | 'evidence';
 
@@ -97,7 +97,7 @@ export default function FileUploader({ type, singleOnly = false }: FileUploaderP
 					</>
 				) : (
 					<>
-						{/* <UploadIcon /> */}
+						<UploadIcon />
 						<p>클릭 혹은 드래그하여 Pdf 파일 업로드</p>
 					</>
 				)}
