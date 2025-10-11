@@ -5,6 +5,7 @@ interface ChatCategorySectionProps {
 	selectedCategory: string | null;
 	onCategoryClick: (category: string) => void;
 	onSubmit: () => void;
+	onSend?: (content: string) => void;
 	isFixed: boolean;
 }
 
@@ -12,12 +13,13 @@ export default function ChatCategorySection({
 	selectedCategory,
 	onCategoryClick,
 	onSubmit,
+	onSend,
 	isFixed,
 }: ChatCategorySectionProps) {
 	return (
 		<div
 			className={`flex w-full flex-col items-center justify-center ${
-				isFixed ? 'mx-auto max-w-[900px] gap-3' : selectedCategory ? 'mt-4' : 'mt-6'
+				isFixed ? 'mx-auto mt-2.5 max-w-[900px] gap-3' : selectedCategory ? 'mt-4' : 'mt-6'
 			}`}
 		>
 			<div className={`flex flex-wrap gap-1 ${isFixed ? 'w-full px-3' : 'justify-center'}`}>
@@ -41,7 +43,14 @@ export default function ChatCategorySection({
 
 			{selectedCategory && (
 				<div className={`${isFixed ? 'w-full' : 'animate-fadeIn mt-6 w-[600px]'}`}>
-					<ChatInput category={selectedCategory} onSubmit={onSubmit} isFixed={isFixed} />
+					<ChatInput
+						category={selectedCategory}
+						onSubmit={(content) => {
+							onSend?.(content);
+							onSubmit();
+						}}
+						isFixed={isFixed}
+					/>
 				</div>
 			)}
 		</div>

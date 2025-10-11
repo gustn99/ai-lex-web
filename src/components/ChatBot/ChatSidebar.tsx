@@ -3,8 +3,12 @@ import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
 import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
 
-export default function ChatSidebar() {
-	const [isSidebarFolded, setIsSidebarFolded] = useState(false);
+interface ChatSidebarProps {
+	isFolded: boolean;
+	onToggleFold: () => void;
+}
+
+export default function ChatSidebar({ isFolded, onToggleFold }: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
 	const isFirstRender = useRef(true);
 
@@ -15,24 +19,24 @@ export default function ChatSidebar() {
 			return;
 		}
 
-		// 이후부터는 토글 시 애니메이션 적용
-		if (!isSidebarFolded) {
+		if (!isFolded) {
 			const timer = setTimeout(() => setAnimateContent(true), 100);
 			return () => clearTimeout(timer);
 		}
 		setAnimateContent(false);
-	}, [isSidebarFolded]);
+	}, [isFolded]);
 
 	return (
 		<aside
-			className={`border-line-normal-neutral flex flex-col border-r transition-[width] duration-300 ease-in-out ${
-				isSidebarFolded ? 'w-[64px] overflow-hidden bg-white' : 'bg-cool-neutral-99 w-[280px]'
+			className={`border-line-normal-neutral fixed top-[60px] left-0 z-[50] flex h-[calc(100vh-60px)] flex-col border-r transition-[width] duration-300 ease-in-out ${
+				isFolded ? 'w-[64px] overflow-hidden bg-white' : 'bg-cool-neutral-99 w-[280px]'
 			}`}
 		>
-			{isSidebarFolded && (
+			{/* 접힌 상태 */}
+			{isFolded && (
 				<div className="flex shrink-0 items-center justify-center p-3">
 					<button
-						onClick={() => setIsSidebarFolded(false)}
+						onClick={onToggleFold}
 						className="border-line-normal-neutral rounded-full border p-[9px]"
 						aria-label="사이드바 펼치기"
 					>
@@ -41,8 +45,8 @@ export default function ChatSidebar() {
 				</div>
 			)}
 
-			{/* 펼쳐진 상태 콘텐츠 */}
-			{!isSidebarFolded && (
+			{/* 펼쳐진 상태 */}
+			{!isFolded && (
 				<div
 					className={`flex h-full flex-col transition-all duration-300 ease-out ${
 						animateContent ? 'translate-x-0 opacity-100' : 'translate-x-[-8px] opacity-0'
@@ -56,8 +60,9 @@ export default function ChatSidebar() {
 
 						<div className="group relative shrink-0">
 							<button
-								onClick={() => setIsSidebarFolded(true)}
+								onClick={onToggleFold}
 								className="border-line-normal-neutral rounded-full border p-[9px]"
+								aria-label="사이드바 닫기"
 							>
 								<CloseIcon />
 							</button>
