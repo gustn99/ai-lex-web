@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChatHeader from '@/components/ChatBot/ChatHeader';
 import ChatSidebar from '@/components/ChatBot/ChatSidebar';
 import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
@@ -7,10 +7,20 @@ import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
 const title = '매매대금 청구'; // TODO 연결
 const caseNo = '2025가단12345';
 
+export interface ChatListItem {
+	id: number;
+	category: string;
+	title: string;
+}
+
 export default function ChatBot() {
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 	const [isChatStarted, setIsChatStarted] = useState(false);
 	const [isSidebarFolded, setIsSidebarFolded] = useState(false);
+
+	const [chatList, setChatList] = useState<ChatListItem[]>([]);
+	const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
+
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [isThinking, setIsThinking] = useState(false);
 
@@ -19,6 +29,32 @@ export default function ChatBot() {
 	};
 
 	const handleStartChat = () => setIsChatStarted(true);
+
+	const handleSelectChat = async (chatId: number, chatCategory: string) => {
+		setSelectedChatId(chatId);
+		setSelectedCategory(chatCategory);
+		setIsChatStarted(true);
+		setIsThinking(true);
+
+		// TODO: 실제 API 연동
+		setTimeout(() => {
+			setMessages([
+				{
+					id: 1,
+					content: '이 송금 사실은 증거로 사용될 수 있나요?',
+					isUser: true,
+					createdAt: new Date().toISOString(),
+				},
+				{
+					id: 2,
+					content: '✅ 네, 금융거래 내역은 증거자료로 활용 가능합니다.',
+					isUser: false,
+					createdAt: new Date().toISOString(),
+				},
+			]);
+			setIsThinking(false);
+		}, 800);
+	};
 
 	const handleSendMessage = async (content: string) => {
 		if (!content.trim()) return;
@@ -32,7 +68,7 @@ export default function ChatBot() {
 		setMessages((prev) => [...prev, userMessage]);
 		setIsThinking(true);
 
-		// TODO API로 교체
+		// TODO: 실제 API 교체
 		setTimeout(() => {
 			const botReply: Message = {
 				id: Date.now() + 1,
@@ -45,12 +81,25 @@ export default function ChatBot() {
 		}, 1000);
 	};
 
+	useEffect(() => {
+		// TODO: 실제 API 교체 (채팅 리스트 조회)
+		setChatList([
+			{ id: 1, category: '금융', title: '5월 10일 송금 사실 입증' },
+			{ id: 2, category: '녹취록', title: '채무 변제 약속 발언' },
+		]);
+	}, []);
+
 	return (
 		<div className="flex h-screen flex-col">
 			<ChatHeader title={title} caseNo={caseNo} />
 
 			<div className="flex flex-1 pt-15">
-				<ChatSidebar isFolded={isSidebarFolded} onToggleFold={() => setIsSidebarFolded((prev) => !prev)} />
+				<ChatSidebar
+					isFolded={isSidebarFolded}
+					onToggleFold={() => setIsSidebarFolded((p) => !p)}
+					chatList={chatList}
+					onSelectChat={handleSelectChat}
+				/>
 
 				<main
 					className={`relative flex flex-1 flex-col overflow-y-auto bg-white transition-[margin] duration-300 ease-in-out ${isSidebarFolded ? 'ml-[64px]' : 'ml-[280px]'} `}

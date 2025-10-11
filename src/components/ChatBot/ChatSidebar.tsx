@@ -2,13 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
 import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
+import { ChatListItem } from '@/pages/ChatBot/ChatBot';
 
 interface ChatSidebarProps {
 	isFolded: boolean;
 	onToggleFold: () => void;
+	chatList: ChatListItem[];
+	onSelectChat: (id: number, category: string) => void;
 }
 
-export default function ChatSidebar({ isFolded, onToggleFold }: ChatSidebarProps) {
+export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelectChat }: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
 	const isFirstRender = useRef(true);
 
@@ -74,6 +77,19 @@ export default function ChatSidebar({ isFolded, onToggleFold }: ChatSidebarProps
 					</div>
 
 					<div className="text-label-02 text-label-alternative shrink-0 px-4 py-2">채팅</div>
+					{chatList.map((chat) => (
+						<div
+							key={chat.id}
+							role="button"
+							tabIndex={0}
+							onClick={() => onSelectChat(chat.id, chat.category)}
+							onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
+							className="cursor-pointer px-4 py-3"
+						>
+							<span className="text-body-02-normal text-label-normal">[{chat.category}]</span>{' '}
+							<span className="text-body-02-normal text-label-normal">{chat.title}</span>
+						</div>
+					))}
 				</div>
 			)}
 		</aside>
