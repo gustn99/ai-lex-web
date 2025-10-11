@@ -1,76 +1,9 @@
-import InputField from '@/components/common/InputField';
-import TextareaField from '@/components/common/TextareaField';
-import { useState } from 'react';
+import FileFilter from '@/components/Clipping/FileFilter';
 
 export default function Home() {
-	const [value, setValue] = useState('');
-	const [text, setText] = useState('');
-
 	return (
-		<div className="flex flex-wrap gap-10 p-10">
-			{/* 필수 항목 */}
-			<div className="w-[335px]">
-				<InputField
-					label="제목"
-					value={value}
-					placeholder="하이"
-					description="메시지에 마침표를 찍어요."
-					required
-					onChange={(e) => setValue(e.target.value)}
-					onClear={() => setValue('')}
-				/>
-			</div>
-
-			{/* disabled + placeholder */}
-			<InputField
-				label="제목"
-				value={value}
-				placeholder="하이"
-				description="메시지에 마침표를 찍어요."
-				disabled
-				onChange={(e) => setValue(e.target.value)}
-				onClear={() => setValue('')}
-			/>
-
-			{/* disabled + 값이 있음 */}
-			<InputField
-				label="제목"
-				value="값이 있다"
-				placeholder="하이"
-				description="메시지에 마침표를 찍어요."
-				disabled
-				onChange={(e) => setValue(e.target.value)}
-				onClear={() => setValue('')}
-			/>
-
-			<div className="w-[335px]">
-				<TextareaField
-					label="설명"
-					value={text}
-					onChange={(e) => setText(e.target.value)}
-					maxLength={100}
-					description="100자 이내로 입력해 주세요."
-					required
-				/>
-			</div>
-
-			<TextareaField
-				label="설명"
-				value={text}
-				onChange={(e) => setText(e.target.value)}
-				maxLength={180}
-				description="180자 이내로 입력해 주세요."
-				disabled
-			/>
-
-			<TextareaField
-				label="설명"
-				value="값이 있음"
-				onChange={(e) => setText(e.target.value)}
-				maxLength={100}
-				description="100자 이내로 입력해 주세요."
-				disabled
-			/>
+		<div>
+			<FileFilter />
 		</div>
 	);
 }
