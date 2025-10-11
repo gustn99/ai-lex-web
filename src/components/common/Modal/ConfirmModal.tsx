@@ -5,11 +5,18 @@ import ModalWrapper from './ModalWrapper';
 export interface ConfirmModalProps {
 	title: string;
 	content: React.ReactNode;
+	onCancel: () => void;
 	confirmButton?: { content: string; onClick: () => void };
 	isNegative?: boolean;
 }
 
-export default function ConfirmModal({ title, content, confirmButton, isNegative = false }: ConfirmModalProps) {
+export default function ConfirmModal({
+	title,
+	content,
+	onCancel,
+	confirmButton,
+	isNegative = false,
+}: ConfirmModalProps) {
 	const isText = typeof content === 'string';
 
 	return (
@@ -22,7 +29,7 @@ export default function ConfirmModal({ title, content, confirmButton, isNegative
 				</div>
 
 				<div className="mt-4 flex gap-3 px-4 py-3">
-					<Button onClick={() => {}} appearance="solid" variant="assistive" className="flex-1">
+					<Button onClick={onCancel} appearance="solid" variant="assistive" className="flex-1">
 						취소
 					</Button>
 					{confirmButton && (
