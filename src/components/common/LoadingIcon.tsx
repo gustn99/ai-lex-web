@@ -1,4 +1,4 @@
-export default function LoadingIcon() {
+export default function LoadingIcon({ className }: { className?: string }) {
 	return (
 		<svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-spin">
 			<circle
@@ -10,6 +10,7 @@ export default function LoadingIcon() {
 				strokeLinecap="round"
 				strokeDasharray="37.7 12.6"
 				transform="rotate(-90 9 9)"
+				className={className}
 			/>
 		</svg>
 	);
