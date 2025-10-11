@@ -18,6 +18,7 @@ export default function ConfirmModal({
 	isNegative = false,
 }: ConfirmModalProps) {
 	const isText = typeof content === 'string';
+	// TODO: useOutsideClick 훅 추가
 
 	return (
 		<ModalWrapper>

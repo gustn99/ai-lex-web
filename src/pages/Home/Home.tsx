@@ -61,7 +61,7 @@ export default function Home() {
 			{isModal3Open && (
 				<ConfirmModal
 					title="나가시겠습니까?"
-					content={<div className="text-label-normal">내용은 복원됩니다.</div>}
+					content={<div className="bg-accent-background-cyan py-10">컨텐츠가 들어갑니다.</div>}
 					onCancel={() => setIsModal3Open(false)}
 				/>
 			)}
