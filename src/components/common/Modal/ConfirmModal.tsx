@@ -30,13 +30,14 @@ export default function ConfirmModal({
 				</div>
 
 				<div className="mt-4 flex gap-3 px-4 py-3">
-					<Button onClick={onCancel} appearance="solid" variant="assistive" className="flex-1">
+					<Button onClick={onCancel} appearance="solid" variant="assistive" size="medium" className="flex-1">
 						취소
 					</Button>
 					{confirmButton && (
 						<Button
 							onClick={confirmButton.onClick}
 							appearance="solid"
+							size="medium"
 							backgroundColor={isNegative ? 'bg-status-negative' : undefined}
 							className="flex-1"
 						>
