@@ -24,6 +24,7 @@
 	--color-label-disable: #37383c29; /* 16% */
 
 	/* Background */
+	--color-inverse-background: #373839;
 	--color-background-normal-normal: #ffffff;
 	--color-background-normal-alternative: #f7f7f8;
 
