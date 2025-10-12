@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import SendIcon from '@/assets/svgs/chatbot/send.svg?react';
+
 import CheckIcon from '@/assets/svgs/chatbot/check.svg?react';
+import SendIcon from '@/assets/svgs/chatbot/send.svg?react';
 
 interface ChatInputProps {
 	category: string | null;

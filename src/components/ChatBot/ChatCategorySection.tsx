@@ -1,4 +1,5 @@
 import { CHATBOT_CATEGORIES } from '@/constants/chatbot/categoryOptions';
+
 import ChatInput from './ChatInput';
 
 interface ChatCategorySectionProps {

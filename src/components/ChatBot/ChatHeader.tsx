@@ -1,6 +1,7 @@
-import BackArrow from '@/assets/svgs/common/back-arrow.svg?react';
-import ChatBotIcon from '@/assets/svgs/chatbot/chatbot.svg?react';
 import { useNavigate } from 'react-router-dom';
+
+import ChatBotIcon from '@/assets/svgs/chatbot/chatbot.svg?react';
+import BackArrow from '@/assets/svgs/common/back-arrow.svg?react';
 
 interface ChatHeaderProps {
 	title: string;

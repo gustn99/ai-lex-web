@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+
 import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
-import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
 import TrashIcon from '@/assets/svgs/chatbot/trash.svg?react';
-import { ChatListItem } from '@/pages/ChatBot/ChatBot';
+import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
+
 import useOutsideClick from '@/hooks/useOutsideClick';
+
+import { ChatListItem } from '@/pages/ChatBot/ChatBot';
 
 interface ChatSidebarProps {
 	isFolded: boolean;

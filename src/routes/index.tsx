@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Home from '@/pages/Home/Home';
 import ChatBot from '@/pages/ChatBot/ChatBot';
+import Home from '@/pages/Home/Home';
 
 export const router = createBrowserRouter([
 	{ path: '/', element: <Home /> },

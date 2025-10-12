@@ -1,6 +1,7 @@
-import { FileUploader } from '@/components/common/Input';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { FileUploader } from '@/components/common/Input';
 
 export default function Home() {
 	const navigate = useNavigate();

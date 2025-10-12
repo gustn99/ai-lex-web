@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import ChatHeader from '@/components/ChatBot/ChatHeader';
-import ChatSidebar from '@/components/ChatBot/ChatSidebar';
+
 import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
+import ChatHeader from '@/components/ChatBot/ChatHeader';
 import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
+import ChatSidebar from '@/components/ChatBot/ChatSidebar';
 
 const title = '매매대금 청구'; // TODO 챗봇 버튼에 정보 연결
 const caseNo = '2025가단12345';
