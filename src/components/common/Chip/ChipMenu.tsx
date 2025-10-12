@@ -41,10 +41,7 @@ export default function ChipMenu({ setIsMenuOpen, setIsEditing }: ChipMenuProps)
 	return (
 		<div
 			ref={menuRef}
-			style={{
-				boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.08);',
-			}}
-			className="text-body-01-normal border-line-solid-neutral absolute top-8 my-2 flex w-40 flex-col gap-1 rounded-lg border bg-white px-3 py-2 font-normal whitespace-nowrap shadow-md"
+			className="shadow-emphasize text-body-01-normal border-line-solid-neutral absolute top-8 my-2 flex w-40 flex-col gap-1 rounded-lg border bg-white px-3 py-2 font-normal whitespace-nowrap"
 		>
 			{menus.map(({ label, value, icon: Icon, contentColor, onClick }) => (
 				<button
