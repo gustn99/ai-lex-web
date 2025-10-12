@@ -37,4 +37,21 @@
 		margin-top: -5px;
 		margin-bottom: -40px;
 	}
+
+	/* file-uploader 전용 스크롤바 스타일 */
+	.file-uploader-scrollbar::-webkit-scrollbar {
+		width: 9px;
+	}
+
+	.file-uploader-scrollbar::-webkit-scrollbar-thumb {
+		background-color: var(--color-fill-strong);
+		border-radius: 9999px;
+		border: solid 3px #fff;
+	}
+
+	.file-uploader-scrollbar::-webkit-scrollbar-track {
+		background-color: transparent;
+		border-radius: 9999px;
+		margin: 2px;
+	}
 }
