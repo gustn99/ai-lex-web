@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-import LoadingIcon from './LoadingIcon';
+import LoadingIcon from '../LoadingIcon';
 
 export interface ButtonProps {
 	appearance: 'solid' | 'outlined';

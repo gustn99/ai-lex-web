@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 import ConfirmModal from '@/components/common/Modal/ConfirmModal';
 
 export default function Home() {
