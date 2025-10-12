@@ -13,13 +13,19 @@ export default function useOutsideClick<T extends HTMLElement>({
 }: UseOutsideClickParams<T>) {
 	useEffect(() => {
 		const handleOutsideClick = (e: MouseEvent) => {
-			if (ref.current && !ref.current.contains(e.target as Node)) {
+			if (ref?.current && !ref?.current.contains(e.target as Node)) {
 				onClick();
+				console.log('outside click');
 			}
 		};
 
-		document.addEventListener(eventType, handleOutsideClick);
+		// 다음 tick에 이벤트 등록
+		const id = setTimeout(() => {
+			document.addEventListener(eventType, handleOutsideClick);
+		}, 0);
+
 		return () => {
+			clearTimeout(id);
 			document.removeEventListener(eventType, handleOutsideClick);
 		};
 	}, [ref, eventType]);

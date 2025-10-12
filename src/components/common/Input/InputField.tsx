@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 
-import CloseIcon from '@/assets/svgs/common/close-circle-gray.svg';
+import CloseIcon from '@/assets/svgs/common/close-circle-gray.svg?react';
 
 interface InputFieldProps {
 	value: string;
