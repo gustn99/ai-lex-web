@@ -8,6 +8,7 @@ interface TextareaFieldProps {
 	required?: boolean;
 	disabled?: boolean;
 	maxLength?: number;
+	minHeight?: number;
 	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -19,6 +20,7 @@ export default function TextareaField({
 	required = false,
 	disabled = false,
 	maxLength = 100,
+	minHeight,
 	onChange,
 }: TextareaFieldProps) {
 	const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -57,6 +59,9 @@ export default function TextareaField({
 					disabled={disabled}
 					maxLength={maxLength}
 					rows={1}
+					style={{
+						minHeight: minHeight ? (typeof minHeight === 'number' ? `${minHeight}px` : minHeight) : undefined,
+					}}
 					className="textarea-scrollbar text-label-normal text-body-01-normal placeholder:text-label-assistive disabled:text-label-alternative max-h-[78px] w-full resize-none overflow-y-auto bg-transparent pr-[7px] outline-none"
 				/>
 
