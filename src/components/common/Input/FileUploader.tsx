@@ -12,12 +12,9 @@ import LoadingIcon from '../LoadingIcon';
 
 import FileList from './FileList';
 
-type FileUploadType = 'document' | 'evidence';
-
 interface FileUploaderProps {
 	files: File[];
 	setFiles: React.Dispatch<React.SetStateAction<File[]>>;
-	type: FileUploadType;
 	singleOnly?: boolean;
 }
 

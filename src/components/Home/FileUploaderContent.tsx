@@ -3,6 +3,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 
 import { Button } from '../common/Button';
+import { FileUploader } from '../common/Input';
 
 import PartySelector from './PartySelector';
 
@@ -13,11 +14,13 @@ interface FileUploaderContentProps {
 type Party = 'plaintiff' | 'defendant';
 
 export default function FileUploaderContent({ isModal = false }: FileUploaderContentProps) {
+	const [files, setFiles] = useState<File[]>([]);
 	const [selectedParty, setSelectedParty] = useState<Party | null>(null);
 	const isSubmitDisabled = !selectedParty;
 
 	return (
 		<div className={clsx('w-154 gap-6 space-y-6 rounded-[20px] bg-white p-5', !isModal && 'shadow-emphasize')}>
+			<FileUploader files={files} setFiles={setFiles} />
 			<PartySelector selectedParty={selectedParty} setSelectedParty={setSelectedParty} />
 			<Button disabled={isSubmitDisabled} onClick={() => {}} appearance="solid" isFullWidth>
 				등록
