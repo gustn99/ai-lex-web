@@ -60,7 +60,7 @@ export default function InputField({
 
 				{showClear && (
 					<button type="button" onMouseDown={handleClear} className="absolute top-1/2 right-3 -translate-y-1/2 p-[1px]">
-						<CloseIcon />
+						<CloseIcon width={22} height={22} />
 					</button>
 				)}
 			</div>
