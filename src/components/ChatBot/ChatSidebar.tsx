@@ -9,9 +9,10 @@ interface ChatSidebarProps {
 	onToggleFold: () => void;
 	chatList: ChatListItem[];
 	onSelectChat: (id: number, category: string) => void;
+	onNewChat: () => void;
 }
 
-export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelectChat }: ChatSidebarProps) {
+export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelectChat, onNewChat }: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
 	const isFirstRender = useRef(true);
 
@@ -56,7 +57,7 @@ export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelect
 					}`}
 				>
 					<div className="flex shrink-0 items-center justify-between p-3">
-						<button className="flex min-w-0 flex-1 items-center gap-2">
+						<button onClick={onNewChat} className="flex min-w-0 flex-1 items-center gap-2">
 							<WriteIcon />
 							<span className="text-body-02-normal text-label-normal whitespace-nowrap">새 채팅</span>
 						</button>

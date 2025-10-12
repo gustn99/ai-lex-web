@@ -29,12 +29,18 @@ export default function ChatBot() {
 	};
 
 	const handleStartChat = () => setIsChatStarted(true);
+	const handleNewChat = () => {
+		setSelectedChatId(null);
+		setSelectedCategory(null);
+		setIsChatStarted(false);
+		setMessages([]);
+		setIsThinking(false);
+	};
 
 	const handleSelectChat = async (chatId: number, chatCategory: string) => {
 		setSelectedChatId(chatId);
 		setSelectedCategory(chatCategory);
 		setIsChatStarted(true);
-		setIsThinking(true);
 
 		// TODO: 실제 API 연동
 		setTimeout(() => {
@@ -52,7 +58,6 @@ export default function ChatBot() {
 					createdAt: new Date().toISOString(),
 				},
 			]);
-			setIsThinking(false);
 		}, 800);
 	};
 
@@ -99,6 +104,7 @@ export default function ChatBot() {
 					onToggleFold={() => setIsSidebarFolded((p) => !p)}
 					chatList={chatList}
 					onSelectChat={handleSelectChat}
+					onNewChat={handleNewChat}
 				/>
 
 				<main
