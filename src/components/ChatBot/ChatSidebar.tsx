@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 
 import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
-import TrashIcon from '@/assets/svgs/chatbot/trash.svg?react';
+import DeleteIcon from '@/assets/svgs/common/delete.svg?react';
 import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
-
 import { ChatListItem } from '@/pages/ChatBot/ChatBot';
+import ContextMenu from '../common/ContextMenu';
 
 interface ChatSidebarProps {
 	isFolded: boolean;
@@ -29,13 +30,13 @@ export default function ChatSidebar({
 	selectedChatId,
 }: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
-	const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null);
-
-	const menuRef = useRef<HTMLDivElement>(null);
+	const [menuTargetId, setMenuTargetId] = useState<number | null>(null);
+	const menuRef = useRef<HTMLDivElement | null>(null);
 
 	const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const isFirstRender = useRef(true);
 
+	// 첫 렌더 시 애니메이션 제어
 	useEffect(() => {
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
@@ -49,46 +50,28 @@ export default function ChatSidebar({
 		setAnimateContent(false);
 	}, [isFolded]);
 
-	// 메뉴 외부 클릭 시 닫기
+	// 외부 클릭 시 메뉴 닫기
 	useOutsideClick({
 		ref: menuRef,
-		onClick: () => setMenuPosition(null),
-		eventType: 'click',
+		onClick: () => setMenuTargetId(null),
+		eventType: 'mousedown',
 	});
 
-	// 삭제 메뉴 오픈
-	const openDeleteMenu = (id: number, target: HTMLElement) => {
-		const rect = target.getBoundingClientRect();
-		setMenuPosition({
-			x: rect.left + 12,
-			y: rect.bottom,
-		});
-	};
-
-	// 길게 누르기 감지
-	const handleMouseDown = (chatId: number, e: React.MouseEvent<HTMLDivElement>) => {
+	// 길게 누르기 → 메뉴 열기
+	const handleMouseDown = (chatId: number, e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		const target = e.currentTarget;
-		longPressTimer.current = setTimeout(() => {
-			openDeleteMenu(chatId, target);
-		}, 600);
+		longPressTimer.current = setTimeout(() => setMenuTargetId(chatId), 600);
 	};
-
 	const handleMouseUp = () => {
 		if (longPressTimer.current) clearTimeout(longPressTimer.current);
 	};
 
-	// 우클릭 메뉴
-	const handleContextMenu = (chatId: number, e: React.MouseEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		openDeleteMenu(chatId, e.currentTarget);
-	};
-
 	return (
 		<aside
-			className={`border-line-normal-neutral fixed top-15 left-0 z-[50] flex h-[calc(100vh-60px)] flex-col border-r transition-[width] duration-300 ease-in-out ${
-				isFolded ? 'w-[64px] overflow-hidden bg-white' : 'bg-cool-neutral-99 w-[280px]'
-			}`}
+			className={clsx(
+				'border-line-normal-neutral fixed top-15 left-0 z-[50] flex h-[calc(100vh-60px)] flex-col border-r transition-[width] duration-300 ease-in-out',
+				isFolded ? 'w-[64px] overflow-hidden bg-white' : 'bg-cool-neutral-99 w-[280px]',
+			)}
 		>
 			{/* 접힌 상태 */}
 			{isFolded && (
@@ -106,10 +89,12 @@ export default function ChatSidebar({
 			{/* 펼쳐진 상태 */}
 			{!isFolded && (
 				<div
-					className={`flex h-full flex-col transition-all duration-300 ease-out ${
-						animateContent ? 'translate-x-0 opacity-100' : 'translate-x-[-8px] opacity-0'
-					}`}
+					className={clsx(
+						'flex h-full flex-col transition-all duration-300 ease-out',
+						animateContent ? 'translate-x-0 opacity-100' : 'translate-x-[-8px] opacity-0',
+					)}
 				>
+					{/* 헤더 */}
 					<div className="flex shrink-0 items-center justify-between p-3">
 						<button onClick={onNewChat} className="flex min-w-0 flex-1 items-center gap-2">
 							<WriteIcon />
@@ -124,7 +109,6 @@ export default function ChatSidebar({
 							>
 								<CloseIcon />
 							</button>
-
 							<div className="bg-inverse-background text-caption-02 text-inverse-label absolute top-[calc(100%+7px)] left-0 hidden -translate-x-[4px] rounded-sm border p-1 whitespace-nowrap group-hover:inline-flex">
 								사이드바 닫기
 							</div>
@@ -135,46 +119,49 @@ export default function ChatSidebar({
 
 					{chatList.map((chat) => {
 						const isActive = chat.id === selectedChatId;
+						const isMenuOpen = menuTargetId === chat.id;
+
 						return (
-							<button
-								key={chat.id}
-								tabIndex={0}
-								onClick={() => onSelectChat(chat.id, chat.category)}
-								onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
-								onContextMenu={(e) => handleContextMenu(chat.id, e)}
-								onMouseDown={(e) => handleMouseDown(chat.id, e)}
-								onMouseUp={handleMouseUp}
-								className={`cursor-pointer px-4 py-3 transition-colors ${
-									isActive ? 'bg-cool-neutral-97' : 'hover:bg-cool-neutral-97'
-								}`}
-							>
-								<span className="text-body-02-normal text-label-normal">[{chat.category}]</span>{' '}
-								<span className="text-body-02-normal text-label-normal">{chat.title}</span>
-							</button>
+							<div key={chat.id} className="relative" ref={menuRef}>
+								<button
+									tabIndex={0}
+									onClick={() => onSelectChat(chat.id, chat.category)}
+									onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
+									onContextMenu={(e) => {
+										e.preventDefault();
+										setMenuTargetId(chat.id);
+									}}
+									onMouseDown={(e) => handleMouseDown(chat.id, e)}
+									onMouseUp={handleMouseUp}
+									className={clsx(
+										'flex w-full px-4 py-3 transition-colors',
+										isActive ? 'bg-cool-neutral-97' : 'hover:bg-cool-neutral-97',
+									)}
+								>
+									<span className="text-body-02-normal text-label-normal shrink-0">[{chat.category}]&nbsp;</span>
+									<span className="text-body-02-normal text-label-normal truncate">{chat.title}</span>
+								</button>
+
+								{isMenuOpen && (
+									<div onMouseDown={(e) => e.stopPropagation()} className="absolute top-2 left-3 z-[100] mt-1">
+										<ContextMenu
+											onClose={() => setMenuTargetId(null)}
+											isAbsolute
+											items={[
+												{
+													key: 'delete',
+													label: '대화 삭제',
+													icon: DeleteIcon,
+													color: 'text-status-negative',
+													onClick: () => onDeleteChat(chat.id),
+												},
+											]}
+										/>
+									</div>
+								)}
+							</div>
 						);
 					})}
-				</div>
-			)}
-
-			{/* 삭제 메뉴 */}
-			{menuPosition && selectedChatId && (
-				<div ref={menuRef}>
-					<button
-						onClick={() => {
-							onDeleteChat(selectedChatId);
-							setMenuPosition(null);
-						}}
-						style={{
-							top: menuPosition.y,
-							left: menuPosition.x,
-							boxShadow:
-								'0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.08)',
-						}}
-						className="border-line-solid-neutral fixed z-[100] my-2 flex w-40 items-center gap-2 rounded-lg border bg-white px-3 py-4"
-					>
-						<TrashIcon />
-						<span className="text-body-01-normal text-status-negative">대화 삭제</span>
-					</button>
 				</div>
 			)}
 		</aside>

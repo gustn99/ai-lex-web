@@ -107,7 +107,7 @@ export default function ChatBot() {
 	useEffect(() => {
 		// TODO: 실제 API 교체 (채팅 리스트 조회)
 		setChatList([
-			{ id: 1, category: '금융', title: '5월 10일 송금 사실 입증' },
+			{ id: 1, category: '금융', title: '5월 10일 송금 사실 입증 입증 입증 입증 입증 입증' },
 			{ id: 2, category: '녹취록', title: '채무 변제 약속 발언' },
 		]);
 	}, []);
