@@ -72,7 +72,7 @@ export default function FileUploader({ files, setFiles, singleOnly = false }: Fi
 	};
 
 	return (
-		<div className={clsx('flex flex-col gap-2 px-2')}>
+		<div className="flex flex-col gap-2">
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>
