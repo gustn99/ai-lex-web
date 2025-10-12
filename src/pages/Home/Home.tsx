@@ -3,6 +3,7 @@ import FileUploaderContent from '@/components/Home/FileUploaderContent';
 import TopBar from '@/components/Home/TopBar';
 
 export default function Home() {
+	// 등록된 서류가 있으면 documents로 이동, 우선은 a 태그로 대체
 	return (
 		<>
 			<TopBar />
@@ -14,6 +15,7 @@ export default function Home() {
 				<FileUploaderContent />
 				<BackgroundImage />
 			</div>
+			<a href="/documents">documents로 가기</a>
 		</>
 	);
 }
