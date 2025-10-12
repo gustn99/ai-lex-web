@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-export default function UseInputId(label: string) {
+export default function useInputId(label: string) {
 	const reactId = useId();
 	const inputId = label ? `input-${label.replace(/\s+/g, '-').toLowerCase()}-${reactId}` : `input-${reactId}`;
 
