@@ -15,7 +15,6 @@ export default function Home() {
 				<FileUploaderModalContent />
 				<BackgroundImage />
 			</div>
-			<a href="/documents">documents로 가기</a>
 		</>
 	);
 }
