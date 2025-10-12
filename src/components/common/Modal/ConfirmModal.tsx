@@ -25,7 +25,13 @@ export default function ConfirmModal({
 			<div className="flex w-100 flex-col rounded-xl bg-white">
 				<div className="text-headline-01 pt-5 text-center font-semibold">{title}</div>
 
-				<div className={isText ? 'text-body-01-normal text-label-neutral mt-2 text-center font-normal' : 'mt-4 px-4'}>
+				<div
+					className={
+						isText
+							? 'text-body-01-normal text-label-neutral mt-2 text-center font-normal whitespace-pre-line'
+							: 'mt-4 px-4'
+					}
+				>
 					{content}
 				</div>
 
