@@ -15,15 +15,15 @@ import FileList from './FileList';
 type FileUploadType = 'document' | 'evidence';
 
 interface FileUploaderProps {
+	files: File[];
+	setFiles: React.Dispatch<React.SetStateAction<File[]>>;
 	type: FileUploadType;
 	singleOnly?: boolean;
 }
 
-export default function FileUploader({ type, singleOnly = false }: FileUploaderProps) {
-	const [files, setFiles] = useState<File[]>([]);
+export default function FileUploader({ files, setFiles, singleOnly = false }: FileUploaderProps) {
 	const [isDragging, setIsDragging] = useState(false);
 	const isLoading = false;
-	const isDocument = type === 'document';
 
 	const inputId = UseInputId('file-upload');
 
@@ -72,7 +72,7 @@ export default function FileUploader({ type, singleOnly = false }: FileUploaderP
 	};
 
 	return (
-		<div className={clsx('flex flex-col px-2', isDocument ? 'gap-3' : 'gap-2')}>
+		<div className={clsx('flex flex-col gap-2 px-2')}>
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>
