@@ -19,7 +19,7 @@ export default function FileUploaderContent({ isModal = false }: FileUploaderCon
 	return (
 		<div className={clsx('w-154 gap-6 space-y-6 rounded-[20px] bg-white p-5', !isModal && 'shadow-emphasize')}>
 			<PartySelector selectedParty={selectedParty} setSelectedParty={setSelectedParty} />
-			<Button disabled={isSubmitDisabled} appearance="solid" isFullWidth>
+			<Button disabled={isSubmitDisabled} onClick={() => {}} appearance="solid" isFullWidth>
 				등록
 			</Button>
 		</div>

@@ -10,7 +10,7 @@ export interface ButtonProps {
 	LeadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	TrailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	disabled?: boolean;
-	isIconOnly?: boolean;
+	iconOnly?: boolean;
 	isLoading?: boolean;
 	isFullWidth?: boolean;
 	contentColor?: string; // utility class
@@ -19,6 +19,7 @@ export interface ButtonProps {
 	typography?: string; // utility class
 	className?: string;
 	children?: React.ReactNode;
+	onClick: () => void;
 }
 
 export default function Button({
@@ -27,7 +28,7 @@ export default function Button({
 	size = 'large',
 	LeadingIcon,
 	TrailingIcon,
-	isIconOnly = false,
+	iconOnly = false,
 	disabled = false,
 	isLoading = false,
 	isFullWidth = false,
@@ -37,10 +38,11 @@ export default function Button({
 	typography,
 	children,
 	className,
+	onClick,
 }: ButtonProps) {
 	const buttonStyle = {
 		solid: {
-			primary: 'bg-primary-normal hover:bg-primary-neutral text-white font-semibold',
+			primary: 'bg-primary-normal text-white font-semibold',
 			secondary: 'bg-cool-neutral-20 text-white font-semibold',
 			assistive: 'bg-fill-normal text-label-neutral font-medium',
 		},
@@ -52,15 +54,15 @@ export default function Button({
 	};
 
 	const buttonSize = {
-		small: `text-label-02 gap-1 ${isIconOnly ? 'p-2' : 'px-4 py-2'}`,
-		medium: `text-body-02-normal gap-[5px] ${isIconOnly ? 'p-2.5' : 'px-5 py-2.5'}`,
-		large: `text-body-01-normal gap-1.5 ${isIconOnly ? 'p-3' : 'px-7 py-3'}`,
+		small: `text-label-02 gap-1 ${iconOnly ? 'p-2' : 'px-4 py-2'}`,
+		medium: `text-body-02-normal gap-[5px] ${iconOnly ? 'p-2.5' : 'px-5 py-2.5'}`,
+		large: `text-body-01-normal gap-1.5 ${iconOnly ? 'p-3' : 'px-7 py-3'}`,
 	};
 
 	const iconSize = {
-		small: isIconOnly ? 'w-[18px] h-[18px]' : 'w-4 h-4',
-		medium: isIconOnly ? 'w-5 h-5' : 'w-[18px] h-[18px]',
-		large: isIconOnly ? 'w-6 h-6' : 'w-5 h-5',
+		small: iconOnly ? 'w-[18px] h-[18px]' : 'w-4 h-4',
+		medium: iconOnly ? 'w-5 h-5' : 'w-[18px] h-[18px]',
+		large: iconOnly ? 'w-6 h-6' : 'w-5 h-5',
 	};
 
 	const interaction = {
@@ -70,6 +72,7 @@ export default function Button({
 	};
 	return (
 		<button
+			onClick={onClick}
 			disabled={disabled}
 			className={twMerge(
 				clsx(
@@ -89,7 +92,7 @@ export default function Button({
 			<div className={clsx('flex items-center justify-center', isLoading && 'invisible', buttonSize[size])}>
 				{LeadingIcon && <LeadingIcon className={iconSize[size]} />}
 				{children}
-				{TrailingIcon && !isIconOnly && <TrailingIcon className={iconSize[size]} />}
+				{TrailingIcon && !iconOnly && <TrailingIcon className={iconSize[size]} />}
 			</div>
 			{isLoading && (
 				<div className={clsx('absolute top-1/2 left-1/2 -translate-1/2', iconSize[size])}>
