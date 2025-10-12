@@ -10,11 +10,12 @@ import PartySelector from './PartySelector';
 
 interface FileUploaderModalContentProps {
 	isModal?: boolean;
+	onClose?: () => void;
 }
 
 export type Party = 'plaintiff' | 'defendant';
 
-export default function FileUploaderModalContent({ isModal = false }: FileUploaderModalContentProps) {
+export default function FileUploaderModalContent({ isModal = false, onClose }: FileUploaderModalContentProps) {
 	const [files, setFiles] = useState<File[]>([]);
 	const [selectedParty, setSelectedParty] = useState<Party | null>(null);
 	const isValidForm = files.length > 0 && selectedParty;
@@ -23,17 +24,34 @@ export default function FileUploaderModalContent({ isModal = false }: FileUpload
 	const nav = useNavigate();
 
 	return (
-		<div className={clsx('space-y-6', isModal ? 'w-full' : 'shadow-emphasize w-154 rounded-[20px] bg-white p-5')}>
+		<div className={clsx('w-154 space-y-6', !isModal && 'shadow-emphasize rounded-[20px] bg-white p-5')}>
 			<FileUploader type="document" files={files} setFiles={setFiles} />
 			<PartySelector selectedParty={selectedParty} setSelectedParty={setSelectedParty} />
-			<Button
-				disabled={!isValidForm}
-				onClick={() => void nav('/documents', { replace: true })}
-				appearance="solid"
-				isFullWidth
-			>
-				등록
-			</Button>
+			<div className="flex gap-3">
+				{isModal && onClose && (
+					<Button
+						onClick={onClose}
+						appearance="solid"
+						variant="assistive"
+						size={isModal ? 'medium' : 'large'}
+						isFullWidth
+					>
+						취소
+					</Button>
+				)}
+				<Button
+					disabled={!isValidForm}
+					onClick={() => {
+						void nav('/documents', { replace: true });
+						if (onClose) onClose();
+					}}
+					appearance="solid"
+					size={isModal ? 'medium' : 'large'}
+					isFullWidth
+				>
+					등록
+				</Button>
+			</div>
 		</div>
 	);
 }
