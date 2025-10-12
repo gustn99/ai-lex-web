@@ -24,10 +24,12 @@ export default function ChatBot() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [isThinking, setIsThinking] = useState(false);
 
+	// 카테고리 클릭
 	const handleCategoryClick = (category: string) => {
 		setSelectedCategory((prev) => (prev === category ? null : category));
 	};
 
+	// 새 채팅 시작
 	const handleStartChat = () => setIsChatStarted(true);
 	const handleNewChat = () => {
 		setSelectedChatId(null);
@@ -37,6 +39,7 @@ export default function ChatBot() {
 		setIsThinking(false);
 	};
 
+	// 채팅 선택
 	const handleSelectChat = async (chatId: number, chatCategory: string) => {
 		setSelectedChatId(chatId);
 		setSelectedCategory(chatCategory);
@@ -61,6 +64,7 @@ export default function ChatBot() {
 		}, 800);
 	};
 
+	// 메시지 전송
 	const handleSendMessage = async (content: string) => {
 		if (!content.trim()) return;
 
@@ -86,6 +90,19 @@ export default function ChatBot() {
 		}, 1000);
 	};
 
+	// 대화 삭제
+	const handleDeleteChat = (chatId: number) => {
+		setChatList((prev) => prev.filter((chat) => chat.id !== chatId));
+
+		// 만약 삭제된 채팅이 현재 열려있다면 초기화
+		if (selectedChatId === chatId) {
+			setSelectedChatId(null);
+			setIsChatStarted(false);
+			setMessages([]);
+			setSelectedCategory(null);
+		}
+	};
+
 	useEffect(() => {
 		// TODO: 실제 API 교체 (채팅 리스트 조회)
 		setChatList([
@@ -105,22 +122,27 @@ export default function ChatBot() {
 					chatList={chatList}
 					onSelectChat={handleSelectChat}
 					onNewChat={handleNewChat}
+					onDeleteChat={handleDeleteChat}
+					selectedChatId={selectedChatId}
 				/>
 
 				<main
-					className={`relative flex flex-1 flex-col overflow-y-auto bg-white transition-[margin] duration-300 ease-in-out ${isSidebarFolded ? 'ml-[64px]' : 'ml-[280px]'} `}
+					className={`relative flex flex-1 flex-col overflow-y-auto bg-white transition-[margin] duration-300 ease-in-out ${
+						isSidebarFolded ? 'ml-[64px]' : 'ml-[280px]'
+					}`}
 				>
 					{isChatStarted && (
 						<div className="flex-1">
 							<ChatMessage messages={messages} isThinking={isThinking} />
 						</div>
 					)}
+
 					<div
 						className={`left-1/2 w-full max-w-[900px] -translate-x-1/2 transform bg-white transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
 							isChatStarted
 								? `fixed bottom-0 translate-y-0 pb-2.5 opacity-100 ${isSidebarFolded ? 'ml-[32px]' : 'ml-[140px]'}`
 								: 'absolute top-1/2 -translate-y-1/2 opacity-100'
-						} `}
+						}`}
 					>
 						{!isChatStarted && (
 							<div className="flex flex-col items-center justify-center">
@@ -130,7 +152,7 @@ export default function ChatBot() {
 
 						<ChatCategorySection
 							selectedCategory={selectedCategory}
-							onCategoryClick={handleCategoryClick}
+							onCategoryClick={!isChatStarted ? handleCategoryClick : undefined}
 							onSubmit={handleStartChat}
 							onSend={handleSendMessage}
 							isFixed={isChatStarted}

@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
 import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
+import TrashIcon from '@/assets/svgs/chatbot/trash.svg?react';
 import { ChatListItem } from '@/pages/ChatBot/ChatBot';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 interface ChatSidebarProps {
 	isFolded: boolean;
@@ -10,10 +12,25 @@ interface ChatSidebarProps {
 	chatList: ChatListItem[];
 	onSelectChat: (id: number, category: string) => void;
 	onNewChat: () => void;
+	onDeleteChat: (id: number) => void;
+	selectedChatId: number | null;
 }
 
-export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelectChat, onNewChat }: ChatSidebarProps) {
+export default function ChatSidebar({
+	isFolded,
+	onToggleFold,
+	chatList,
+	onSelectChat,
+	onNewChat,
+	onDeleteChat,
+	selectedChatId,
+}: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
+	const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null);
+
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const isFirstRender = useRef(true);
 
 	useEffect(() => {
@@ -22,13 +39,47 @@ export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelect
 			setAnimateContent(true);
 			return;
 		}
-
 		if (!isFolded) {
 			const timer = setTimeout(() => setAnimateContent(true), 100);
 			return () => clearTimeout(timer);
 		}
 		setAnimateContent(false);
 	}, [isFolded]);
+
+	// 메뉴 외부 클릭 시 닫기
+	useOutsideClick({
+		ref: menuRef,
+		onClick: () => setMenuPosition(null),
+		eventType: 'click',
+	});
+
+	// 삭제 메뉴 오픈
+	const openDeleteMenu = (id: number, target: HTMLElement) => {
+		const rect = target.getBoundingClientRect();
+		setMenuPosition({
+			x: rect.left + 12,
+			y: rect.bottom,
+		});
+	};
+
+	// 길게 누르기 감지
+	const handleMouseDown = (chatId: number, e: React.MouseEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		const target = e.currentTarget;
+		longPressTimer.current = setTimeout(() => {
+			openDeleteMenu(chatId, target);
+		}, 600);
+	};
+
+	const handleMouseUp = () => {
+		if (longPressTimer.current) clearTimeout(longPressTimer.current);
+	};
+
+	// 우클릭 메뉴
+	const handleContextMenu = (chatId: number, e: React.MouseEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		openDeleteMenu(chatId, e.currentTarget);
+	};
 
 	return (
 		<aside
@@ -78,19 +129,50 @@ export default function ChatSidebar({ isFolded, onToggleFold, chatList, onSelect
 					</div>
 
 					<div className="text-label-02 text-label-alternative shrink-0 px-4 py-2">채팅</div>
-					{chatList.map((chat) => (
-						<div
-							key={chat.id}
-							role="button"
-							tabIndex={0}
-							onClick={() => onSelectChat(chat.id, chat.category)}
-							onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
-							className="cursor-pointer px-4 py-3"
-						>
-							<span className="text-body-02-normal text-label-normal">[{chat.category}]</span>{' '}
-							<span className="text-body-02-normal text-label-normal">{chat.title}</span>
-						</div>
-					))}
+
+					{chatList.map((chat) => {
+						const isActive = chat.id === selectedChatId;
+						return (
+							<div
+								key={chat.id}
+								role="button"
+								tabIndex={0}
+								onClick={() => onSelectChat(chat.id, chat.category)}
+								onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
+								onContextMenu={(e) => handleContextMenu(chat.id, e)}
+								onMouseDown={(e) => handleMouseDown(chat.id, e)}
+								onMouseUp={handleMouseUp}
+								className={`cursor-pointer px-4 py-3 transition-colors ${
+									isActive ? 'bg-cool-neutral-97' : 'hover:bg-cool-neutral-97'
+								}`}
+							>
+								<span className="text-body-02-normal text-label-normal">[{chat.category}]</span>{' '}
+								<span className="text-body-02-normal text-label-normal">{chat.title}</span>
+							</div>
+						);
+					})}
+				</div>
+			)}
+
+			{/* 삭제 메뉴 */}
+			{menuPosition && selectedChatId && (
+				<div ref={menuRef}>
+					<button
+						onClick={() => {
+							onDeleteChat(selectedChatId);
+							setMenuPosition(null);
+						}}
+						style={{
+							top: menuPosition.y,
+							left: menuPosition.x,
+							boxShadow:
+								'0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.08)',
+						}}
+						className="border-line-solid-neutral fixed z-[100] my-2 flex w-40 items-center gap-2 rounded-lg border bg-white px-3 py-4"
+					>
+						<TrashIcon />
+						<span className="text-body-01-normal text-status-negative">대화 삭제</span>
+					</button>
 				</div>
 			)}
 		</aside>

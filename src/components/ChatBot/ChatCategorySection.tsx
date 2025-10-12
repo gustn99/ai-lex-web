@@ -3,7 +3,7 @@ import ChatInput from './ChatInput';
 
 interface ChatCategorySectionProps {
 	selectedCategory: string | null;
-	onCategoryClick: (category: string) => void;
+	onCategoryClick?: (category: string) => void;
 	onSubmit: () => void;
 	onSend?: (content: string) => void;
 	isFixed: boolean;
@@ -28,7 +28,7 @@ export default function ChatCategorySection({
 					return (
 						<button
 							key={category}
-							onClick={() => onCategoryClick(category)}
+							onClick={() => onCategoryClick?.(category)}
 							className={`text-label-01-normal rounded-lg border px-2.5 py-1.5 font-medium transition-colors ${
 								isActive
 									? 'bg-cool-neutral-20 text-inverse-label border-transparent'
