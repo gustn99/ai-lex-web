@@ -12,13 +12,16 @@ import LoadingIcon from '../LoadingIcon';
 
 import FileList from './FileList';
 
+type FileUploadType = 'document' | 'evidence';
+
 interface FileUploaderProps {
 	files: File[];
 	setFiles: React.Dispatch<React.SetStateAction<File[]>>;
+	type: FileUploadType;
 	singleOnly?: boolean;
 }
 
-export default function FileUploader({ files, setFiles, singleOnly = false }: FileUploaderProps) {
+export default function FileUploader({ files, setFiles, type, singleOnly = false }: FileUploaderProps) {
 	const [isDragging, setIsDragging] = useState(false);
 	const isLoading = false;
 
@@ -69,7 +72,7 @@ export default function FileUploader({ files, setFiles, singleOnly = false }: Fi
 	};
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className={clsx('flex flex-col', type === 'document' ? 'gap-3' : 'gap-2')}>
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>

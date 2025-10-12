@@ -1,5 +1,5 @@
 import BackgroundImage from '@/components/Home/BackgroundImage';
-import FileUploaderContent from '@/components/Home/FileUploaderContent';
+import FileUploaderModalContent from '@/components/Home/FileUploaderModalContent';
 import TopBar from '@/components/Home/TopBar';
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 					<p className="text-title-01 font-bold">사건 서류를 등록해 주세요.</p>
 					<p className="text-heading-01">Pdf 형식의 파일을 업로드 해주세요.</p>
 				</div>
-				<FileUploaderContent />
+				<FileUploaderModalContent />
 				<BackgroundImage />
 			</div>
 			<a href="/documents">documents로 가기</a>
