@@ -44,7 +44,7 @@ export default function ChatInput({ category, onSubmit, isFixed }: ChatInputProp
 		<div className="flex w-full flex-col gap-2">
 			<form
 				onSubmit={handleSubmit}
-				className="border-line-normal-alternative bg-fill-alternative flex w-full items-center justify-between gap-2 rounded-3xl border p-2 shadow-[0_2px_8px_0_#2F313426]"
+				className="border-line-normal-alternative bg-fill-alternative flex h-full w-full items-end justify-between gap-2 rounded-3xl border p-2 shadow-[0_2px_8px_0_#2F313426]"
 			>
 				<textarea
 					ref={textareaRef}

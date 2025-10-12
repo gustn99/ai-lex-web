@@ -4,7 +4,7 @@ import ChatSidebar from '@/components/ChatBot/ChatSidebar';
 import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
 import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
 
-const title = '매매대금 청구'; // TODO 연결
+const title = '매매대금 청구'; // TODO 챗봇 버튼에 정보 연결
 const caseNo = '2025가단12345';
 
 export interface ChatListItem {
@@ -42,7 +42,7 @@ export default function ChatBot() {
 		setSelectedCategory(chatCategory);
 		setIsChatStarted(true);
 
-		// TODO: 실제 API 연동
+		// TODO: 실제 API 연동 (해당 채팅 리스트의 채팅 내역 조회)
 		setTimeout(() => {
 			setMessages([
 				{
@@ -73,7 +73,7 @@ export default function ChatBot() {
 		setMessages((prev) => [...prev, userMessage]);
 		setIsThinking(true);
 
-		// TODO: 실제 API 교체
+		// TODO: 실제 API 교체 (챗봇 요청 보내기)
 		setTimeout(() => {
 			const botReply: Message = {
 				id: Date.now() + 1,
