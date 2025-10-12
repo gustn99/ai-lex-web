@@ -57,8 +57,10 @@ export default function FileUploader({ files, setFiles, type, singleOnly = false
 			const filteredFiles = [...fs].filter((f) =>
 				files.every((existing) => existing.name !== f.name || existing.size !== f.size),
 			);
-			if (filteredFiles.length === 0) alert('이미 업로드한 파일입니다.');
-			else if (filteredFiles.length < fs.length) alert('중복 파일을 제외하고 업로드합니다.');
+			if (filteredFiles.length < fs.length) {
+				if (filteredFiles.length === 0) alert('이미 업로드한 파일입니다.');
+				alert('중복 파일을 제외하고 업로드합니다.');
+			}
 
 			setFiles([...files, ...filteredFiles]);
 		}
