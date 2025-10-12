@@ -1,3 +1,7 @@
+import { useRef } from 'react';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
+
 import { Button } from '../Button';
 
 import ModalWrapper from './ModalWrapper';
@@ -17,12 +21,14 @@ export default function ConfirmModal({
 	confirmButton,
 	isNegative = false,
 }: ConfirmModalProps) {
+	const modalRef = useRef<HTMLDivElement | null>(null);
+	useOutsideClick({ ref: modalRef, onClick: onCancel });
+
 	const isText = typeof content === 'string';
-	// TODO: useOutsideClick 훅 추가
 
 	return (
 		<ModalWrapper>
-			<div className="flex w-100 flex-col rounded-xl bg-white">
+			<div ref={modalRef} className="flex w-100 flex-col rounded-xl bg-white">
 				<div className="text-headline-01 pt-5 text-center font-semibold">{title}</div>
 
 				<div
