@@ -1,9 +1,9 @@
-import FileFilter from '@/components/Clipping/FileFilter';
+import BackgroundImage from '@/components/Home/BackgroundImage';
 
 export default function Home() {
 	return (
 		<div>
-			<FileFilter />
+			<BackgroundImage />
 		</div>
 	);
 }
