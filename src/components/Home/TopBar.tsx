@@ -16,7 +16,7 @@ export default function TopBar() {
 				<div className="flex items-center gap-4">
 					<p>user1234</p>
 					{!isTrueHome && (
-						<Button appearance="solid" size="medium" LeadingIcon={PlusIcon}>
+						<Button onClick={() => {}} appearance="solid" size="medium" LeadingIcon={PlusIcon}>
 							서면 생성하기
 						</Button>
 					)}
