@@ -10,7 +10,7 @@ export default function TopBar() {
 	const isTrueHome = location.pathname === '/';
 
 	return (
-		<div className="border-line-normal-neutral sticky flex h-15 w-full items-center border bg-white/10 px-6 md:px-15 lg:px-30">
+		<div className="border-line-normal-neutral sticky flex h-15 w-full items-center border bg-white/10 px-4 md:px-15 lg:px-30">
 			<div className="mx-auto flex w-full max-w-[1100px] items-center justify-between">
 				<LogoIcon className="my-1.5" />
 				<div className="flex items-center gap-4">
