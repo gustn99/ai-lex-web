@@ -86,7 +86,7 @@ export default function ChatSidebar({
 
 	return (
 		<aside
-			className={`border-line-normal-neutral fixed top-[60px] left-0 z-[50] flex h-[calc(100vh-60px)] flex-col border-r transition-[width] duration-300 ease-in-out ${
+			className={`border-line-normal-neutral fixed top-15 left-0 z-[50] flex h-[calc(100vh-60px)] flex-col border-r transition-[width] duration-300 ease-in-out ${
 				isFolded ? 'w-[64px] overflow-hidden bg-white' : 'bg-cool-neutral-99 w-[280px]'
 			}`}
 		>
@@ -136,9 +136,8 @@ export default function ChatSidebar({
 					{chatList.map((chat) => {
 						const isActive = chat.id === selectedChatId;
 						return (
-							<div
+							<button
 								key={chat.id}
-								role="button"
 								tabIndex={0}
 								onClick={() => onSelectChat(chat.id, chat.category)}
 								onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
@@ -151,7 +150,7 @@ export default function ChatSidebar({
 							>
 								<span className="text-body-02-normal text-label-normal">[{chat.category}]</span>{' '}
 								<span className="text-body-02-normal text-label-normal">{chat.title}</span>
-							</div>
+							</button>
 						);
 					})}
 				</div>

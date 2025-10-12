@@ -20,7 +20,7 @@ export default function ChatCategorySection({
 	return (
 		<div
 			className={`flex w-full flex-col items-center justify-center ${
-				isFixed ? 'mx-auto mt-2.5 max-w-[900px] gap-3' : selectedCategory ? 'mt-4' : 'mt-6'
+				isFixed ? 'mx-auto mt-2.5 gap-3' : selectedCategory ? 'mt-4' : 'mt-6'
 			}`}
 		>
 			<div className={`flex flex-wrap gap-1 ${isFixed ? 'w-full px-3' : 'justify-center'}`}>

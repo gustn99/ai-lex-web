@@ -116,7 +116,7 @@ export default function ChatBot() {
 		<div className="flex h-screen flex-col">
 			<ChatHeader title={title} caseNo={caseNo} />
 
-			<div className="flex flex-1 pt-15">
+			<div className="flex flex-1">
 				<ChatSidebar
 					isFolded={isSidebarFolded}
 					onToggleFold={() => setIsSidebarFolded((p) => !p)}
