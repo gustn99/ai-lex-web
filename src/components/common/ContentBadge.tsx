@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx';
 
 interface ContentBadgeProps {
 	appearance: 'solid' | 'outlined';
@@ -27,7 +27,7 @@ export default function ContentBadge({ appearance, color, className, children }:
 
 	return (
 		<div
-			className={twMerge(
+			className={clsx(
 				'text-caption-02 inline rounded-md px-1.5 py-[3px] font-medium',
 				styles[appearance][color],
 				className,
