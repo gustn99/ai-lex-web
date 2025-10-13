@@ -54,7 +54,7 @@ export default function Toast({
 			{actionLabel && (
 				<button onClick={onActionClick} className="flex items-center gap-0.5">
 					<span className="text-label-02">{actionLabel}</span>
-					<ArrowIcon className="text-white" />
+					<ArrowIcon className="h-4.5 w-4.5 text-white" />
 				</button>
 			)}
 		</div>

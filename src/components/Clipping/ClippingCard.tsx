@@ -15,6 +15,7 @@ import { formatKoreanDate, formatKoreanDateTime } from '@/utils/dateUtils';
 import ClippingInfo from './ClippingInfo';
 
 export interface ClippingCardProps {
+	id: number;
 	type: 'rebuttal' | 'evidence' | 'enhance' | 'evidence-request';
 	requestText?: string;
 	fileName: string;
@@ -24,11 +25,12 @@ export interface ClippingCardProps {
 	savedAt?: string;
 	sentAt?: string;
 	link?: string;
-	onViewDetail?: () => void;
+	onViewDetail?: (id: number) => void;
 	isSubmittedEvidence?: boolean;
 }
 
 export default function ClippingCard({
+	id,
 	type,
 	requestText,
 	content,
@@ -94,12 +96,12 @@ export default function ClippingCard({
 							<button
 								onClick={(e) => {
 									e.stopPropagation();
-									onViewDetail?.();
+									onViewDetail?.(id);
 								}}
 								className="text-label-01-normal text-primary-normal flex items-center gap-1 font-semibold"
 							>
 								<span>제출 내역</span>
-								<ArrowIcon />
+								<ArrowIcon className="h-4.5 w-4.5" />
 							</button>
 						) : (
 							<button
