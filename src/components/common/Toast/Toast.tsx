@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import ArrowIcon from '@/assets/svgs/common/arrow.svg?react';
 import AlertIcon from '@/assets/svgs/toast/alert.svg?react';
-import ArrowIcon from '@/assets/svgs/toast/arrow.svg?react';
 import CheckIcon from '@/assets/svgs/toast/confirm.svg?react';
 
 interface ToastProps {
@@ -54,7 +54,7 @@ export default function Toast({
 			{actionLabel && (
 				<button onClick={onActionClick} className="flex items-center gap-0.5">
 					<span className="text-label-02">{actionLabel}</span>
-					<ArrowIcon />
+					<ArrowIcon className="text-white" />
 				</button>
 			)}
 		</div>

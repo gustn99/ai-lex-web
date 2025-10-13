@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import ClippingModal from '@/components/Clipping/ClippingModal';
 import EvidenceRequestModal from '@/components/Clipping/EvidenceRequestModal';
 import Toast from '@/components/common/Toast/Toast';
 
@@ -24,7 +25,7 @@ export default function Home() {
 	};
 
 	return (
-		<div className="space-y-3">
+		<div className="">
 			<button onClick={handleOpenEvidenceModal}>증거제출 요청</button>
 
 			{/* 증거제출 모달 */}
@@ -33,7 +34,7 @@ export default function Home() {
 			)}
 
 			{/* 클리핑 모달 */}
-			{/* {isClippingModalOpen && <ClippingModal onCancel={handleCloseClippingModal} />} */}
+			{isClippingModalOpen && <ClippingModal onCancel={handleCloseClippingModal} />}
 
 			{showToast && <Toast type="check" message="링크 복사 완료" />}
 		</div>

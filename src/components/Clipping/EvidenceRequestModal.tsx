@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react';
 
 import CloseIcon from '@/assets/svgs/common/close.svg?react';
-import FileIcon from '@/assets/svgs/common/file.svg?react';
 import LinkIcon from '@/assets/svgs/common/link.svg?react';
 
 import { TextareaField } from '@/components/common/Input';
 import { ModalWrapper } from '@/components/common/Modal';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
+
+import ClippingInfo from './ClippingInfo';
 
 interface EvidenceRequestModalProps {
 	onCancel: () => void;
@@ -33,18 +34,11 @@ export default function EvidenceRequestModal({ onCancel, onCreate }: EvidenceReq
 
 				{/* 내용 */}
 				<div className="flex flex-col gap-5 px-6 pt-4">
-					<div className="bg-fill-alternative flex flex-col gap-2 rounded p-2">
-						<span className="text-body-02-normal text-label-neutral line-clamp-2">
-							"2018. 12. 21. 11:57경 기관내 삽관 당시 망인의 동맥혈가스검사결과 를 살펴보면, 망인의 산소포화도는 90%, pH
-							7.42, PCO2 36mmHg 로 산증 및 고이산화탄소증 소견은 전혀 존재하지 않았고 PO2 역시 58mmHg로 기관내 삽관을
-							고려할 정도의 저산소증 소견 역시 존재하지 않았습니다."
-						</span>
-						<div className="flex items-center gap-1 rounded bg-[#f1f1f2] px-2 py-1">
-							<FileIcon />
-							<span className="text-label-neutral text-label-02">갑 제1호증: 매매계약서</span>
-							<span className="text-caption-01 text-label-alternative">19페이지</span>
-						</div>
-					</div>
+					<ClippingInfo
+						fileName="갑 제1호증: 매매계약서"
+						content='"2018. 12. 21. 11:57경 기관내 삽관 당시 망인의 동맥혈가스검사결과 를 살펴보면, 망인의 산소포화도는 90%, pH 7.42, PCO2 36mmHg 로 산증 및 고이산화탄소증 소견은 전혀 존재하지 않았고 PO2 역시 58mmHg로 기관내 삽관을 고려할 정도의 저산소증 소견 역시 존재하지 않았습니다."'
+						page={19}
+					/>
 
 					<TextareaField
 						label="요청 사항 입력"
@@ -65,7 +59,7 @@ export default function EvidenceRequestModal({ onCancel, onCreate }: EvidenceReq
 						onClick={onCreate}
 						className="bg-primary-normal flex w-fit items-center gap-1.25 rounded-lg px-5 py-2.25 text-white"
 					>
-						<LinkIcon />
+						<LinkIcon className="text-white" />
 						<span className="text-body-02-normal font-semibold text-white">요청 링크 생성 및 복사</span>
 					</button>
 				</div>

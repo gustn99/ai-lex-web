@@ -3,6 +3,7 @@ import clsx from 'clsx';
 export interface Tab {
 	label: string;
 	value: string;
+	count?: number;
 }
 
 export interface TabListProps {
@@ -16,7 +17,7 @@ export default function TabList({ tabs, activeTab, onClick }: TabListProps) {
 
 	return (
 		<div className="text-body-02-normal flex font-semibold">
-			{tabs.map(({ label, value }) => {
+			{tabs.map(({ label, value, count }) => {
 				const isActive = label === activeTab;
 				return (
 					<button
@@ -28,6 +29,7 @@ export default function TabList({ tabs, activeTab, onClick }: TabListProps) {
 						)}
 					>
 						{value}
+						{count !== undefined && <> ({count})</>}
 					</button>
 				);
 			})}
