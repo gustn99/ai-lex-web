@@ -1,10 +1,13 @@
 import { useRef, useState } from 'react';
-import { ModalWrapper } from '@/components/common/Modal';
-import useOutsideClick from '@/hooks/useOutsideClick';
-import { TextareaField } from '@/components/common/Input';
-import LinkIcon from '@/assets/svgs/common/link.svg?react';
+
 import CloseIcon from '@/assets/svgs/common/close.svg?react';
 import FileIcon from '@/assets/svgs/common/file.svg?react';
+import LinkIcon from '@/assets/svgs/common/link.svg?react';
+
+import { TextareaField } from '@/components/common/Input';
+import { ModalWrapper } from '@/components/common/Modal';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 interface EvidenceRequestModalProps {
 	onCancel: () => void;
