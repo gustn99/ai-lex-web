@@ -95,7 +95,6 @@ export default function ChatBot() {
 	const handleDeleteChat = (chatId: number) => {
 		setChatList((prev) => prev.filter((chat) => chat.id !== chatId));
 
-		// 만약 삭제된 채팅이 현재 열려있다면 초기화
 		if (selectedChatId === chatId) {
 			setSelectedChatId(null);
 			setIsChatStarted(false);
@@ -116,7 +115,7 @@ export default function ChatBot() {
 		<div className="flex h-screen flex-col">
 			<ChatHeader title={title} caseNo={caseNo} />
 
-			<div className="flex flex-1">
+			<div className="flex flex-1 pt-15">
 				<ChatSidebar
 					isFolded={isSidebarFolded}
 					onToggleFold={() => setIsSidebarFolded((p) => !p)}
@@ -132,11 +131,7 @@ export default function ChatBot() {
 						isSidebarFolded ? 'ml-[64px]' : 'ml-[280px]'
 					}`}
 				>
-					{isChatStarted && (
-						<div className="flex-1">
-							<ChatMessage messages={messages} isThinking={isThinking} />
-						</div>
-					)}
+					{isChatStarted && <ChatMessage messages={messages} isThinking={isThinking} />}
 
 					<div
 						className={`left-1/2 w-full max-w-[900px] -translate-x-1/2 transform bg-white transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${

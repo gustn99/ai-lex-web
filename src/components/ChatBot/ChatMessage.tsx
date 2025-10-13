@@ -20,7 +20,7 @@ export default function ChatMessage({ messages, isThinking }: ChatMessageProps) 
 	}, [messages, isThinking]);
 
 	return (
-		<div className="mx-auto mt-2.5 flex w-full max-w-[900px] flex-1 flex-col space-y-6 overflow-y-auto px-2 pb-[134px]">
+		<div className="mx-auto mt-2.5 flex w-full max-w-[900px] flex-col space-y-6 overflow-y-auto px-2 pb-[134px]">
 			{messages.map((msg) => (
 				<div key={msg.id} className={`flex ${msg.isUser ? 'justify-end' : 'justify-start'} w-full`}>
 					<div

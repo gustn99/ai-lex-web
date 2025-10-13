@@ -30,6 +30,7 @@ export default function ChatSidebar({
 	selectedChatId,
 }: ChatSidebarProps) {
 	const [animateContent, setAnimateContent] = useState(true);
+	const [isLongPress, setIsLongPress] = useState(false);
 	const [menuTargetId, setMenuTargetId] = useState<number | null>(null);
 	const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -60,10 +61,22 @@ export default function ChatSidebar({
 	// 길게 누르기 → 메뉴 열기
 	const handleMouseDown = (chatId: number, e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		longPressTimer.current = setTimeout(() => setMenuTargetId(chatId), 600);
+		setIsLongPress(false);
+
+		longPressTimer.current = setTimeout(() => {
+			setMenuTargetId(chatId);
+			setIsLongPress(true);
+		}, 600);
 	};
+
 	const handleMouseUp = () => {
 		if (longPressTimer.current) clearTimeout(longPressTimer.current);
+	};
+
+	const handleClick = (chatId: number, category: string) => {
+		if (!isLongPress) {
+			onSelectChat(chatId, category);
+		}
 	};
 
 	return (
@@ -125,7 +138,7 @@ export default function ChatSidebar({
 							<div key={chat.id} className="relative" ref={menuRef}>
 								<button
 									tabIndex={0}
-									onClick={() => onSelectChat(chat.id, chat.category)}
+									onClick={() => handleClick(chat.id, chat.category)}
 									onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
 									onContextMenu={(e) => {
 										e.preventDefault();
