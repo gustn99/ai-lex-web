@@ -10,7 +10,7 @@ export default function Home() {
 	const [evidenceFiles, setEvidenceFiles] = useState<File[]>([]);
 	return (
 		<div className="space-y-3">
-			<button onClick={() => navigate('/chatbot')}>챗봇 테스트</button>
+			<button onClick={() => void navigate('/chatbot')}>챗봇 테스트</button>
 			<FileUploader files={documentFiles} setFiles={setDocumenetFiles} type="document" />
 			<FileUploader files={evidenceFiles} setFiles={setEvidenceFiles} type="evidence" singleOnly />
 		</div>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import clsx from 'clsx';
+
 import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
 import ChatHeader from '@/components/ChatBot/ChatHeader';
 import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
 import ChatSidebar from '@/components/ChatBot/ChatSidebar';
-import clsx from 'clsx';
 
 const title = '매매대금 청구'; // TODO 챗봇 버튼에 정보 연결
 const caseNo = '2025가단12345';
@@ -42,7 +43,7 @@ export default function ChatBot() {
 	};
 
 	// 채팅 선택
-	const handleSelectChat = async (chatId: number, chatCategory: string) => {
+	const handleSelectChat = (chatId: number, chatCategory: string) => {
 		setSelectedChatId(chatId);
 		setSelectedCategory(chatCategory);
 		setIsChatStarted(true);
@@ -67,7 +68,7 @@ export default function ChatBot() {
 	};
 
 	// 메시지 전송
-	const handleSendMessage = async (content: string) => {
+	const handleSendMessage = (content: string) => {
 		if (!content.trim()) return;
 
 		const userMessage: Message = {

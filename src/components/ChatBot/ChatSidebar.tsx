@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+
 import clsx from 'clsx';
 
 import CloseIcon from '@/assets/svgs/chatbot/close.svg?react';
 import ExpandIcon from '@/assets/svgs/chatbot/expand.svg?react';
-import DeleteIcon from '@/assets/svgs/common/delete.svg?react';
 import WriteIcon from '@/assets/svgs/chatbot/write.svg?react';
+import DeleteIcon from '@/assets/svgs/common/delete.svg?react';
+
+import ContextMenu from '@/components/common/ContextMenu';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
+
 import { ChatListItem } from '@/pages/ChatBot/ChatBot';
-import ContextMenu from '../common/ContextMenu';
 
 interface ChatSidebarProps {
 	isFolded: boolean;
@@ -137,7 +140,6 @@ export default function ChatSidebar({
 						return (
 							<div key={chat.id} className="relative" ref={menuRef}>
 								<button
-									tabIndex={0}
 									onClick={() => handleClick(chat.id, chat.category)}
 									onKeyDown={(e) => e.key === 'Enter' && onSelectChat(chat.id, chat.category)}
 									onContextMenu={(e) => {

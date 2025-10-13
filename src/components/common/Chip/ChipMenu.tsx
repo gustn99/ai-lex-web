@@ -1,6 +1,7 @@
-import ContextMenu from '@/components/common/ContextMenu';
-import DeleteIcon from '@/assets/svgs/common/delete.svg?react';
 import EditIcon from '@/assets/svgs/chip/edit.svg?react';
+import DeleteIcon from '@/assets/svgs/common/delete.svg?react';
+
+import ContextMenu from '@/components/common/ContextMenu';
 
 interface ChipMenuProps {
 	setIsMenuOpen: (state: boolean) => void;
