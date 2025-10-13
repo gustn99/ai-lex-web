@@ -1,29 +1,27 @@
 import { useState } from 'react';
 
+import FileTab from './FileTab/FileTab';
+
 import { TabList, TabPanel } from '../../common/Tab';
 
 const tabs = [
-	{ label: 'files', value: '사건 기록' },
-	{ label: 'ai-suggestion', value: 'AI 클립핑 제안' },
-	{ label: 'history', value: '사건 히스토리' },
+	{ label: 'files', value: '사건 기록', tabContent: FileTab },
+	{ label: 'ai-suggestion', value: 'AI 클립핑 제안', tabContent: FileTab },
+	{ label: 'history', value: '사건 히스토리', tabContent: FileTab },
 ];
 
-export default function ClippingTabs() {
+export default function DetailSidebarTabs() {
 	const [activeTab, setActiveTab] = useState(tabs[1].label);
 
 	return (
-		<div className="px-3">
+		<div className="space-y-3 px-3">
 			<TabList tabs={tabs} activeTab={activeTab} onClick={(tab) => setActiveTab(tab)} />
 
-			<TabPanel label={tabs[0].label} activeTab={activeTab}>
-				사건 기록
-			</TabPanel>
-			<TabPanel label={tabs[1].label} activeTab={activeTab}>
-				ai 클립핑 제안
-			</TabPanel>
-			<TabPanel label={tabs[2].label} activeTab={activeTab}>
-				사건 히스토리
-			</TabPanel>
+			{tabs.map(({ label, tabContent: TabContent }) => (
+				<TabPanel key={label} label={label} activeTab={activeTab}>
+					<TabContent />
+				</TabPanel>
+			))}
 		</div>
 	);
 }

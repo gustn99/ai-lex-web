@@ -7,9 +7,7 @@ export interface TabPanelProps {
 export default function TabPanel({ label, activeTab, children }: TabPanelProps) {
 	const isActive = label === activeTab;
 
-	return (
-		<div hidden={!isActive} className="h-full w-full pt-3">
-			{isActive && children}
-		</div>
-	);
+	if (!isActive) return null;
+
+	return <div className="h-full w-full">{children}</div>;
 }
