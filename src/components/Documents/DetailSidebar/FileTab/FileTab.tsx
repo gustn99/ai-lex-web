@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
 import FileFilter from './FileFilter';
+import FileList from './FileList';
 
 export default function FileTab() {
 	const [searchKeyword, setSearchKeyword] = useState('');
 
 	return (
-		<div>
+		<div className="h-full space-y-3 overflow-y-scroll pb-15">
 			<FileFilter searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
+			<FileList />
 		</div>
 	);
 }
