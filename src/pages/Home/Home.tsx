@@ -7,7 +7,7 @@ export default function Home() {
 	const [isEvidenceModalOpen, setIsEvidenceModalOpen] = useState(false);
 	const [isClippingModalOpen, setIsClippingModalOpen] = useState(false);
 
-	const [showToast, setShowToast] = useState(false); // ✅ 토스트 상태
+	const [showToast, setShowToast] = useState(false);
 
 	const handleOpenEvidenceModal = () => setIsEvidenceModalOpen(true);
 	const handleCloseEvidenceModal = () => setIsEvidenceModalOpen(false);
@@ -35,7 +35,7 @@ export default function Home() {
 			{/* 클리핑 모달 */}
 			{/* {isClippingModalOpen && <ClippingModal onCancel={handleCloseClippingModal} />} */}
 
-			{showToast && <Toast message="링크 복사 완료" />}
+			{showToast && <Toast type="check" message="링크 복사 완료" />}
 		</div>
 	);
 }
