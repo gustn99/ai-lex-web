@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ChipList, ChipType } from '../common/Chip';
+import { ChipList, ChipType } from '../../common/Chip';
 
 const chips: Record<'all' | 'document' | 'party', ChipType[]> = {
 	all: [{ label: 'all', value: '전체' }],
