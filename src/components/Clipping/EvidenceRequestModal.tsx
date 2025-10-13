@@ -12,7 +12,7 @@ import ClippingInfo from './ClippingInfo';
 
 interface EvidenceRequestModalProps {
 	onCancel: () => void;
-	onCreate: () => void;
+	onCreate: (requestText: string) => void;
 }
 
 export default function EvidenceRequestModal({ onCancel, onCreate }: EvidenceRequestModalProps) {
@@ -56,7 +56,7 @@ export default function EvidenceRequestModal({ onCancel, onCreate }: EvidenceReq
 					</span>
 
 					<button
-						onClick={onCreate}
+						onClick={() => onCreate(requestText)}
 						className="bg-primary-normal flex w-fit items-center gap-1.25 rounded-lg px-5 py-2.25 text-white"
 					>
 						<LinkIcon className="text-white" />

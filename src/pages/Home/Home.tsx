@@ -19,9 +19,8 @@ export default function Home() {
 	const handleCreateEvidence = () => {
 		handleCloseEvidenceModal();
 		handleOpenClippingModal();
-
 		setShowToast(true);
-		setTimeout(() => setShowToast(false), 5000);
+		setTimeout(() => setShowToast(false), 3000);
 	};
 
 	return (

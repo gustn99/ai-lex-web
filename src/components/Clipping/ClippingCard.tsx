@@ -2,23 +2,21 @@ import { useState } from 'react';
 
 import clsx from 'clsx';
 
-import EnhanceIcon from '@/assets/svgs/clipping/enhance-icon.svg?react';
-import EvidenceIcon from '@/assets/svgs/clipping/evidence-request-icon.svg?react';
-import RebuttalIcon from '@/assets/svgs/clipping/rebuttal-icon.svg?react';
 import ArrowDownIcon from '@/assets/svgs/common/arrow-drop-down.svg?react';
 import ArrowIcon from '@/assets/svgs/common/arrow.svg?react';
 import FolderIcon from '@/assets/svgs/common/folder.svg?react';
 import LinkIcon from '@/assets/svgs/common/link.svg?react';
 
-import { formatKoreanDate, formatKoreanDateTime } from '@/utils/dateUtils';
+import Toast from '@/components/common/Toast/Toast';
 
-import Toast from '../common/Toast/Toast';
+import { typeConfig } from '@/constants/clipping/clippingModalOptions';
+import { formatKoreanDate, formatKoreanDateTime } from '@/utils/dateUtils';
 
 import ClippingInfo from './ClippingInfo';
 
-interface ClippingCardProps {
+export interface ClippingCardProps {
 	type: 'rebuttal' | 'evidence' | 'enhance' | 'evidence-request';
-	requestText: string;
+	requestText?: string;
 	fileName: string;
 	content: string;
 	page: number;
@@ -29,29 +27,6 @@ interface ClippingCardProps {
 	onViewDetail?: () => void;
 	isSubmittedEvidence?: boolean;
 }
-
-const typeConfig = {
-	rebuttal: {
-		label: '반박',
-		icon: <RebuttalIcon />,
-		typeColor: 'text-tag-orange',
-	},
-	evidence: {
-		label: '근거',
-		icon: <EvidenceIcon className="text-tag-purple" />,
-		typeColor: 'text-tag-purple',
-	},
-	enhance: {
-		label: '강화',
-		icon: <EnhanceIcon />,
-		typeColor: 'text-tag-green',
-	},
-	'evidence-request': {
-		label: '증거 제출 요청',
-		icon: <EvidenceIcon className="text-accent-foreground-cyan" />,
-		typeColor: 'text-accent-foreground-cyan',
-	},
-} as const;
 
 export default function ClippingCard({
 	type,
