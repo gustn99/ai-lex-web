@@ -1,3 +1,9 @@
+import { DetailSidebar } from '@/components/Documents/DetailSidebar';
+
 export default function DocumentDetail() {
-	return <div></div>;
+	return (
+		<div>
+			<DetailSidebar />
+		</div>
+	);
 }
