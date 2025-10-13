@@ -4,6 +4,7 @@ import ChatCategorySection from '@/components/ChatBot/ChatCategorySection';
 import ChatHeader from '@/components/ChatBot/ChatHeader';
 import ChatMessage, { Message } from '@/components/ChatBot/ChatMessage';
 import ChatSidebar from '@/components/ChatBot/ChatSidebar';
+import clsx from 'clsx';
 
 const title = '매매대금 청구'; // TODO 챗봇 버튼에 정보 연결
 const caseNo = '2025가단12345';
@@ -112,33 +113,36 @@ export default function ChatBot() {
 	}, []);
 
 	return (
-		<div className="flex h-screen flex-col">
+		<div className="flex h-dvh w-full flex-col overflow-hidden">
 			<ChatHeader title={title} caseNo={caseNo} />
 
-			<div className="flex flex-1 pt-15">
-				<ChatSidebar
-					isFolded={isSidebarFolded}
-					onToggleFold={() => setIsSidebarFolded((p) => !p)}
-					chatList={chatList}
-					onSelectChat={handleSelectChat}
-					onNewChat={handleNewChat}
-					onDeleteChat={handleDeleteChat}
-					selectedChatId={selectedChatId}
-				/>
+			<div className="flex flex-1 overflow-hidden pt-15">
+				{/* 사이드바 */}
+				<div className={`transition-[width] duration-300 ease-in-out ${isSidebarFolded ? 'w-[64px]' : 'w-[280px]'}`}>
+					<ChatSidebar
+						isFolded={isSidebarFolded}
+						onToggleFold={() => setIsSidebarFolded((p) => !p)}
+						chatList={chatList}
+						onSelectChat={handleSelectChat}
+						onNewChat={handleNewChat}
+						onDeleteChat={handleDeleteChat}
+						selectedChatId={selectedChatId}
+					/>
+				</div>
 
-				<main
-					className={`relative flex flex-1 flex-col overflow-y-auto bg-white transition-[margin] duration-300 ease-in-out ${
-						isSidebarFolded ? 'ml-[64px]' : 'ml-[280px]'
-					}`}
-				>
-					{isChatStarted && <ChatMessage messages={messages} isThinking={isThinking} />}
+				{/* 메인 콘텐츠 */}
+				<main className="relative flex flex-1 flex-col overflow-hidden bg-white">
+					{isChatStarted && (
+						<div className="flex-1 overflow-y-auto">
+							<ChatMessage messages={messages} isThinking={isThinking} />
+						</div>
+					)}
 
 					<div
-						className={`left-1/2 w-full max-w-[900px] -translate-x-1/2 transform bg-white transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-							isChatStarted
-								? `fixed bottom-0 translate-y-0 pb-2.5 opacity-100 ${isSidebarFolded ? 'ml-[32px]' : 'ml-[140px]'}`
-								: 'absolute top-1/2 -translate-y-1/2 opacity-100'
-						}`}
+						className={clsx(
+							'absolute left-1/2 w-full max-w-[916px] -translate-x-1/2 px-2 transition-all duration-500 ease-in-out',
+							isChatStarted ? 'bottom-0 translate-y-0 bg-white opacity-100' : 'top-1/2 -translate-y-1/2 opacity-100',
+						)}
 					>
 						{!isChatStarted && (
 							<div className="flex flex-col items-center justify-center">

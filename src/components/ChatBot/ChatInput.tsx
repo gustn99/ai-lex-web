@@ -6,10 +6,9 @@ import SendIcon from '@/assets/svgs/chatbot/send.svg?react';
 interface ChatInputProps {
 	category: string | null;
 	onSubmit?: (content: string) => void;
-	isFixed?: boolean;
 }
 
-export default function ChatInput({ category, onSubmit, isFixed }: ChatInputProps) {
+export default function ChatInput({ category, onSubmit }: ChatInputProps) {
 	const [value, setValue] = useState('');
 	const [isComposing, setIsComposing] = useState(false);
 	const textareaRef = useRef<HTMLTextAreaElement | null>(null);

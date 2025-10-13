@@ -24,10 +24,10 @@ export default function ChatMessage({ messages, isThinking }: ChatMessageProps) 
 			{messages.map((msg) => (
 				<div key={msg.id} className={`flex ${msg.isUser ? 'justify-end' : 'justify-start'} w-full`}>
 					<div
-						className={`text-label-normal rounded-3xl break-words whitespace-pre-line ${
+						className={`text-label-normal max-w-[70%] rounded-3xl break-words whitespace-pre-line ${
 							msg.isUser
-								? 'bg-cool-neutral-99 border-line-normal-alternative max-w-[70%] py-[14px] pr-[10px] pl-[14px]'
-								: 'bg-transparent p-2.5'
+								? 'bg-cool-neutral-99 border-line-normal-alternative py-[14px] pr-[10px] pl-[14px]'
+								: 'bg-transparent'
 						}`}
 					>
 						{msg.content}
