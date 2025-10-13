@@ -12,6 +12,7 @@ export interface ChipProps {
 	isEditable?: boolean;
 	onSelect: (chip: string) => void;
 	onDeselect: (e: React.MouseEvent, chip: string) => void;
+	isSingleSelect?: boolean;
 }
 
 export default function Chip(props: ChipProps) {

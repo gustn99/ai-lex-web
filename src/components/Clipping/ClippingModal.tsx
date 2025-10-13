@@ -3,10 +3,13 @@ import { useRef, useState } from 'react';
 import ClippingGuide from '@/assets/svgs/clipping/clipping-guide.svg?react';
 import CloseIcon from '@/assets/svgs/common/close.svg?react';
 
+import { ChipList } from '@/components/common/Chip';
 import { ModalWrapper } from '@/components/common/Modal';
 import { TabList, TabPanel } from '@/components/common/Tab';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
+
+import { CLIPPING_MODAL_MENUS } from '@/constants/clipping/clippingModalOptions';
 
 import ClippingCard, { ClippingCardProps } from './ClippingCard';
 
@@ -67,22 +70,32 @@ const clippingData = {
 	],
 } as const;
 
-const tabs = [
-	{ label: 'all', value: '전체' },
-	{ label: 'enhance', value: '강화' },
-	{ label: 'rebuttal', value: '반박' },
-	{ label: 'evidence', value: '근거' },
-	{ label: 'evidence-request', value: '증거제출 요청' },
-] as const;
-
 export default function ClippingModal({ onCancel }: { onCancel: () => void }) {
 	const modalRef = useRef<HTMLDivElement>(null);
 	useOutsideClick({ ref: modalRef, onClick: onCancel });
 
-	const [activeTab, setActiveTab] = useState<(typeof tabs)[number]['label']>('all');
+	const [activeTab, setActiveTab] = useState<(typeof CLIPPING_MODAL_MENUS)[number]['label']>('all');
+	const [isAddingFolder, setIsAddingFolder] = useState(false);
 
 	const allData: ClippingCardProps[] = Object.values(clippingData).flat();
 	const currentList = activeTab === 'all' ? allData : clippingData[activeTab];
+
+	const [folderList, setFolderList] = useState([
+		{ label: 'all', value: '전체 폴더' }, // 추후 변경
+		{ label: '1차 서면 준비 작성', value: '1차 서면 준비 작성' },
+		{ label: '2차 반박 서류', value: '2차 반박 서류' },
+		{ label: '3차 반박 서류', value: '3차 반박 서류' },
+		{ label: '4차 반박 서류', value: '4차 반박 서류' },
+		{ label: '5차 반박 서류', value: '5차 반박 서류' },
+		{ label: '6차 반박 서류', value: '6차 반박 서류' },
+	]);
+
+	const [activeFolders, setActiveFolders] = useState<string[]>(['all']);
+
+	const handleAddFolder = () => {
+		setIsAddingFolder(true);
+		// 폴더 생성 모달 띄우기
+	};
 
 	return (
 		<ModalWrapper>
@@ -94,9 +107,22 @@ export default function ClippingModal({ onCancel }: { onCancel: () => void }) {
 					</button>
 				</div>
 
+				<div className="scrollbar-hide flex w-full items-center overflow-x-auto px-4 pb-3">
+					<ChipList
+						chips={folderList}
+						activeChips={activeFolders}
+						isEditable
+						setActiveChips={setActiveFolders}
+						isSingleSelect
+						onAddChip={handleAddFolder}
+						isNewFolderActive={isAddingFolder}
+						setIsNewFolderActive={setIsAddingFolder}
+					/>
+				</div>
+
 				<div className="shrink-0 bg-white px-4">
 					<TabList
-						tabs={tabs.map((tab) => ({
+						tabs={CLIPPING_MODAL_MENUS.map((tab) => ({
 							...tab,
 							count: tab.label === 'all' ? allData.length : clippingData[tab.label].length,
 						}))}

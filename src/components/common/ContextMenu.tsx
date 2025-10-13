@@ -27,6 +27,7 @@ export default function ContextMenu({ items, onClose, isAbsolute = false, classN
 	return (
 		<div
 			ref={menuRef}
+			onClick={(e) => e.stopPropagation()}
 			style={{
 				boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.08)',
 			}}

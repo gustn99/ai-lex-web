@@ -9,7 +9,7 @@ import LinkIcon from '@/assets/svgs/common/link.svg?react';
 
 import Toast from '@/components/common/Toast/Toast';
 
-import { typeConfig } from '@/constants/clipping/clippingModalOptions';
+import { CLIPPING_TYPE_CONFIGS } from '@/constants/clipping/clippingModalOptions';
 import { formatKoreanDate, formatKoreanDateTime } from '@/utils/dateUtils';
 
 import ClippingInfo from './ClippingInfo';
@@ -44,7 +44,7 @@ export default function ClippingCard({
 	const [isExpanded, setIsExpanded] = useState(true);
 	const [showLinkToast, setShowLinkToast] = useState(false);
 
-	const { label, icon, typeColor } = typeConfig[type];
+	const { label, icon, typeColor } = CLIPPING_TYPE_CONFIGS[type];
 	const isEvidenceRequest = type === 'evidence-request';
 	const shouldShowDivider = isEvidenceRequest || (!isEvidenceRequest && isExpanded);
 

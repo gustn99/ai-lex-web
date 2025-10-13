@@ -13,6 +13,7 @@ export interface ChipButtonProps {
 	onSelect: (chip: string) => void;
 	onDeselect: (e: React.MouseEvent, chip: string) => void;
 	setIsMenuOpen: (state: boolean) => void;
+	isSingleSelect?: boolean;
 }
 
 export default function ChipButton({
@@ -23,6 +24,7 @@ export default function ChipButton({
 	onSelect,
 	onDeselect,
 	setIsMenuOpen,
+	isSingleSelect,
 }: ChipButtonProps) {
 	const handleContextMenu = (e: React.MouseEvent) => {
 		if (!isEditable || isAll) return;
@@ -36,7 +38,7 @@ export default function ChipButton({
 		<button
 			className={twMerge(
 				clsx(
-					'flex items-center gap-1 rounded-lg border px-2.5 py-1.5',
+					'flex items-center gap-1 rounded-lg border px-2.5 py-1.5 whitespace-nowrap',
 					isActive
 						? `bg-label-strong ${backgroundColor} text-inverse-label`
 						: 'border-line-normal-neutral text-label-alternative',
@@ -47,7 +49,7 @@ export default function ChipButton({
 		>
 			{value}
 
-			{!isAll && isActive && (
+			{!isAll && isActive && !isSingleSelect && (
 				<div role="button" tabIndex={0} onClick={(e) => onDeselect(e, label)}>
 					<ChipIcon />
 				</div>
