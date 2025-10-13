@@ -35,7 +35,7 @@ export default function FileFilter(props: FileFilterProps) {
 
 	return (
 		<div
-			className={clsx('text-body-01-normal flex items-center justify-between', isSearching ? 'gap-3' : 'gap-2.5 p-1')}
+			className={clsx('text-body-01-normal flex h-10 items-center justify-between', isSearching ? 'gap-3' : 'gap-2.5')}
 		>
 			{isSearching ? (
 				<SearchInput {...props} isSearching={isSearching} />
