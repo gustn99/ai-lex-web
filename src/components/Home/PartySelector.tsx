@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import DefendantIcon from '@/assets/svgs/home/defendant.svg?react';
 import PlaintiffIcon from '@/assets/svgs/home/plaintiff.svg?react';
 
-type Party = 'plaintiff' | 'defendant';
+import { Party } from '@/utils/types';
 
 interface PartySelectorProps {
 	selectedParty: Party | null;

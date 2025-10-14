@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
 
+import { Party } from '@/utils/types';
+
 import { Button } from '../common/Button';
 import { FileUploader } from '../common/Input';
 
@@ -12,8 +14,6 @@ interface FileUploaderModalContentProps {
 	isModal?: boolean;
 	onClose?: () => void;
 }
-
-export type Party = 'plaintiff' | 'defendant';
 
 export default function FileUploaderModalContent({ isModal = false, onClose }: FileUploaderModalContentProps) {
 	const [files, setFiles] = useState<File[]>([]);
