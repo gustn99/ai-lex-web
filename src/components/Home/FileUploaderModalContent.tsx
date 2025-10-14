@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
 
-import { Party } from '@/utils/types';
+import { Party } from '@/lib/types';
 
 import { Button } from '../common/Button';
 import { FileUploader } from '../common/Input';
