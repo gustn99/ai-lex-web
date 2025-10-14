@@ -23,7 +23,7 @@ export default function TopBar() {
 						<p>user1234</p>
 						{!isTrueHome && (
 							<Button onClick={() => setIsModalOpen(true)} appearance="solid" size="medium" LeadingIcon={PlusIcon}>
-								서면 생성하기
+								새 사건 서류
 							</Button>
 						)}
 					</div>
