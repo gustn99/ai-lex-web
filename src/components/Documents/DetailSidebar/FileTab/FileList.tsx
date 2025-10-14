@@ -1,3 +1,5 @@
+import SortIcon from '@/assets/svgs/documents/sort.svg?react';
+
 import FileItem from './FileItem';
 
 export default function FileList() {
@@ -5,10 +7,12 @@ export default function FileList() {
 		<div className="border-line-normal-alternative text-label-02 text-label-alternative flex h-fit max-h-full min-h-0 w-full flex-col rounded-lg border">
 			<div className="bg-fill-alternative flex items-center justify-between rounded-t-lg px-4 py-3">
 				<button className="flex w-16 gap-1">
-					파일명<div className="bg-accent-background-cyan h-4.5 w-4.5"></div>
+					파일명
+					<SortIcon />
 				</button>
 				<button className="flex w-16 gap-1">
-					날짜<div className="bg-accent-background-cyan h-4.5 w-4.5"></div>
+					날짜
+					<SortIcon />
 				</button>
 			</div>
 
