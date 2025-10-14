@@ -7,7 +7,8 @@ interface FileListProps {
 }
 
 export default function FileList({ files, setFiles }: FileListProps) {
-	const handleFileDeleteClick = (fileName: string) => {
+	const handleFileDeleteClick = (e: React.MouseEvent, fileName: string) => {
+		e.stopPropagation();
 		setFiles(files.filter((f) => f.name !== fileName));
 	};
 
@@ -19,7 +20,7 @@ export default function FileList({ files, setFiles }: FileListProps) {
 				<li key={f.name} className="text-label-02 grid grid-cols-[auto_1fr_auto] items-center gap-1 px-1">
 					<AttachFileIcon />
 					<div className="w-full truncate">{f.name}</div>
-					<button onClick={() => handleFileDeleteClick(f.name)}>
+					<button onClick={(e) => handleFileDeleteClick(e, f.name)}>
 						<DeleteIcon width={16} height={16} style={{ '--fill-opacity': 0.61 } as React.CSSProperties} />
 					</button>
 				</li>
