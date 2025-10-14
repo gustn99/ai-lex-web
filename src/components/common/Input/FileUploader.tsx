@@ -21,7 +21,7 @@ interface FileUploaderProps {
 	singleOnly?: boolean;
 }
 
-export default function FileUploader({ files, setFiles, singleOnly = false }: FileUploaderProps) {
+export default function FileUploader({ files, setFiles, type, singleOnly = false }: FileUploaderProps) {
 	const [isDragging, setIsDragging] = useState(false);
 	const isLoading = false;
 
@@ -57,8 +57,10 @@ export default function FileUploader({ files, setFiles, singleOnly = false }: Fi
 			const filteredFiles = [...fs].filter((f) =>
 				files.every((existing) => existing.name !== f.name || existing.size !== f.size),
 			);
-			if (filteredFiles.length === 0) alert('이미 업로드한 파일입니다.');
-			else if (filteredFiles.length < fs.length) alert('중복 파일을 제외하고 업로드합니다.');
+			if (filteredFiles.length < fs.length) {
+				if (filteredFiles.length === 0) alert('이미 업로드한 파일입니다.');
+				alert('중복 파일을 제외하고 업로드합니다.');
+			}
 
 			setFiles([...files, ...filteredFiles]);
 		}
@@ -72,7 +74,7 @@ export default function FileUploader({ files, setFiles, singleOnly = false }: Fi
 	};
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className={clsx('flex flex-col', type === 'document' ? 'gap-3' : 'gap-2')}>
 			<label htmlFor={inputId} className="text-label-01-normal text-label-neutral font-semibold">
 				파일 업로드 <span className="text-status-negative ml-1 font-medium">*</span>
 			</label>

@@ -10,5 +10,5 @@ export default function ModalWrapper({ children }: { children: React.ReactNode }
 		};
 	}, []);
 
-	return <div className="fixed inset-0 flex items-center justify-center bg-black/30">{children}</div>;
+	return <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/30">{children}</div>;
 }

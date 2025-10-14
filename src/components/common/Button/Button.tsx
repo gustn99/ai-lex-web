@@ -54,8 +54,8 @@ export default function Button({
 	};
 
 	const buttonSize = {
-		small: `text-label-02 gap-1 ${iconOnly ? 'p-2' : 'px-4 py-2'}`,
-		medium: `text-body-02-normal gap-[5px] ${iconOnly ? 'p-2.5' : 'px-5 py-2.5'}`,
+		small: `text-label-02 gap-1 ${iconOnly ? 'p-1.75' : 'px-3.5 py-1.75'}`,
+		medium: `text-body-02-normal gap-[5px] ${iconOnly ? 'p-2.25' : 'px-5 py-2.25'}`,
 		large: `text-body-01-normal gap-1.5 ${iconOnly ? 'p-3' : 'px-7 py-3'}`,
 	};
 
