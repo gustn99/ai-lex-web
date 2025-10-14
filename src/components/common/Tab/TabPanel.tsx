@@ -9,5 +9,5 @@ export default function TabPanel({ label, activeTab, children }: TabPanelProps) 
 
 	if (!isActive) return null;
 
-	return <div className="h-full w-full">{children}</div>;
+	return <>{children}</>;
 }

@@ -14,7 +14,7 @@ export default function DetailSidebarTabs() {
 	const [activeTab, setActiveTab] = useState(tabs[1].label);
 
 	return (
-		<div className="h-full space-y-3 px-3">
+		<div className="flex h-full min-h-0 flex-col gap-3 px-3">
 			<TabList tabs={tabs} activeTab={activeTab} onClick={(tab) => setActiveTab(tab)} />
 
 			{tabs.map(({ label, tabContent: TabContent }) => (

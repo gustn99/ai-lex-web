@@ -8,7 +8,7 @@ export default function FileTab() {
 	const [searchKeyword, setSearchKeyword] = useState('');
 
 	return (
-		<div className="h-full space-y-3 overflow-y-scroll pb-15">
+		<div className="grid h-full min-h-0 grid-rows-[auto_1fr] gap-3 pb-20">
 			<FileFilter searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
 			<FileList />
 			<AddFileButton />
