@@ -17,7 +17,7 @@ export default function TopBar() {
 	return (
 		<>
 			<div className="border-line-normal-neutral sticky flex h-15 w-full items-center border bg-white/10">
-				<div className="mx-auto flex w-full max-w-[1100px] items-center justify-between px-6">
+				<div className="mx-auto flex w-full max-w-[1148px] items-center justify-between px-6">
 					<LogoIcon className="my-1.5" />
 					<div className="flex items-center gap-4">
 						<p>user1234</p>
