@@ -1,6 +1,5 @@
-import Banner from '@/components/Home/Documents/Banner';
-import DocumentList from '@/components/Home/Documents/DocumentList';
-import TopBar from '@/components/Home/TopBar';
+import { TopBar } from '@/components/Home';
+import { Banner, DocumentList } from '@/components/Home/Documents';
 
 export default function Documents() {
 	return (

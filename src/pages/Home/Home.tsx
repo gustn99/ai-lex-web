@@ -1,9 +1,6 @@
-import BackgroundImage from '@/components/Home/BackgroundImage';
-import FileUploaderModalContent from '@/components/Home/FileUploaderModalContent';
-import TopBar from '@/components/Home/TopBar';
+import { BackgroundImage, FileUploaderModalContent, TopBar } from '@/components/Home';
 
 export default function Home() {
-	// 등록된 서류가 있으면 documents로 이동, 우선은 a 태그로 대체
 	return (
 		<>
 			<TopBar />
